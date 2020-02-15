@@ -153,7 +153,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 365 个字)
+                    8 分钟 读完 (大约 1167 个字)
                 </span>
                 
                 
@@ -172,16 +172,16 @@
 <li><p>情况1：类没有覆盖equals()方法。则通过equals()比较该类的两个对象时，等价于通过”==”比较这两个对象。</p>
 </li>
 <li><p>情况2：类覆盖了equals()方法。一般，我们都覆盖equals()方法来比较两个对象的内容是否相等；若它们的内容相等，则返回 true (即，认为这两个对象相等)。</p>
-</li>
-</ul>
-<p>&emsp;&emsp;基本数据类型的包装类为引用类型，其中的equals()方法等价于”==”,以下为Integer的equals()方法:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object obj) &#123;</span><br><span class="line">    if (obj instanceof Integer) &#123;</span><br><span class="line">        return this.value &#x3D;&#x3D; (Integer)obj;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;String的equsle()方法被重写过，比较的是对象的值是否相等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object anObject) &#123;</span><br><span class="line">    if (this &#x3D;&#x3D; anObject) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        if (anObject instanceof String) &#123;</span><br><span class="line">            String aString &#x3D; (String)anObject;</span><br><span class="line">            if (this.coder() &#x3D;&#x3D; aString.coder()) &#123;</span><br><span class="line">                return this.isLatin1() ? StringLatin1.equals(this.value, aString.value) : StringUTF16.equals(this.value, aString.value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;object的equals()方法比较的是对象的内存地址是否相等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object obj) &#123;</span><br><span class="line">    return this &#x3D;&#x3D; obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
+        
+        <div class="level is-mobile" style="display: flex;justify-content: center;">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/02/15/equals-hashcode/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -239,7 +239,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            2
+                            3
                         </p>
                     </a>
                 </div>
@@ -251,7 +251,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            2
+                            3
                         </p>
                     </a>
                 </div>
@@ -263,7 +263,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            4
+                            6
                         </p>
                     </a>
                 </div>
@@ -331,6 +331,14 @@
             <span class="level-end">
                 <span class="level-item tag">1</span>
             </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E9%9D%A2%E8%AF%95/">
+            <span class="level-start">
+                <span class="level-item">面试</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
         </a></li>
             </ul>
         </div>
@@ -373,6 +381,20 @@
                     </a>
                 </div>
                 
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/">
+                        <span class="tag">日常计划</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/">
+                        <span class="tag">面试</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -386,6 +408,19 @@
         <h3 class="menu-label">
             最新文章
         </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-15T15:54:35.000Z">2020-02-15</time></div>
+                    <a href="/2020/02/15/interview/" class="title has-link-black-ter is-size-6 has-text-weight-normal">面试前的一些针对性复习计划</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -430,7 +465,7 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -445,7 +480,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
     </div>
 </div>
         
@@ -495,6 +530,19 @@
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-15T15:54:35.000Z">2020-02-15</time></div>
+                    <a href="/2020/02/15/interview/" class="title has-link-black-ter is-size-6 has-text-weight-normal">面试前的一些针对性复习计划</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-15T08:12:35.000Z">2020-02-15</time></div>
                     <a href="/2020/02/15/equals-hashcode/" class="title has-link-black-ter is-size-6 has-text-weight-normal">重写equals方法为什么要重写hashcode?</a>
                     <p class="is-size-7 is-uppercase">
@@ -534,7 +582,7 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -549,7 +597,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
     </div>
 </div>
     
