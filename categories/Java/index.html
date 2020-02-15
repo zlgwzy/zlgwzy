@@ -7,12 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>mili&#39;s blog</title>
+<title>分类: Java - mili&#39;s blog</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="mili&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/categories/Java/index.html">
 <meta property="og:site_name" content="mili&#39;s blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
@@ -84,7 +84,7 @@
             
             <div class="navbar-start">
                 
-                <a class="navbar-item is-active"
+                <a class="navbar-item"
                 href="/">首页</a>
                 
                 <a class="navbar-item"
@@ -125,7 +125,18 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">分类</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">Java</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
     
 <div class="card">
     
@@ -170,58 +181,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object anObject) &#123;</span><br><span class="line">    if (this &#x3D;&#x3D; anObject) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        if (anObject instanceof String) &#123;</span><br><span class="line">            String aString &#x3D; (String)anObject;</span><br><span class="line">            if (this.coder() &#x3D;&#x3D; aString.coder()) &#123;</span><br><span class="line">                return this.isLatin1() ? StringLatin1.equals(this.value, aString.value) : StringUTF16.equals(this.value, aString.value);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>&emsp;&emsp;object的equals()方法比较的是对象的内存地址是否相等。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object obj) &#123;</span><br><span class="line">    return this &#x3D;&#x3D; obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-15T08:12:35.000Z">2020-02-15</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 分钟 读完 (大约 300 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/15/hello-world/">Hello World</a>
-            
-        </h1>
-        <div class="content">
-            <p>&emsp;&emsp;国际惯例，先来一篇Hello，World!</p>
-<p>&emsp;&emsp;终于完成了一直以来的一个梦想，搭建一个属于自己的博客。记录一下学习到的新技术，偶尔记录一下生活上的趣事也是极好的。博客采用了hexo，主题采用了icarus，项目仓库在GitHub。由于GitHub Pages的访问速度太慢了，所以就将仓库关联到了Gitee，托管在了Gitee Pages。由于域名还在备案的流程当中，所以暂时用了Gitee二级域名，后面会换到自己的域名。<a href="https://www.zlgwzy.com">https://www.zlgwzy.com</a></p>
-<p>&emsp;&emsp;接下来就是把以前做的笔记整理一下上传到博客，方便以后回顾，同时也加深了印象。</p>
-<p>&emsp;&emsp;由于疫情的原因，一直宅在家学习准备面试。希望早点控制好疫情，就能够出去找工作面试了，希望能找到满意的工作。</p>
-<center>
-
-<p><img src="http://b195.photo.store.qq.com/psb?/V13Of6Tn0WmQ97/t1lcBSo2kKC6AFz7G4ajpWZZt*JjuDqrGi267P8BhpA!/b/dMMAAAAAAAAA&bo=OASgBQAAAAARB6k!&rf=viewer_4" alt="献上油条的照骗"></p>
-</center>
         </div>
         
         
