@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
 <meta property="article:published_time" content="2020-02-15T08:12:35.000Z">
-<meta property="article:modified_time" content="2020-02-15T15:52:35.774Z">
+<meta property="article:modified_time" content="2020-02-16T03:22:44.251Z">
 <meta property="article:author" content="mili">
 <meta property="article:tag" content="equals">
 <meta property="article:tag" content="hashcode">
@@ -148,7 +148,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1167 个字)
+                    9 分钟 读完 (大约 1311 个字)
                 </span>
                 
                 
@@ -186,7 +186,16 @@
 <li>hashCode()的默认行为是对堆上的对象产生独特值。如果没有重写hashCode(),则该class的两个对象无论如何都不会相等(即使这两个对象是相同的数据)</li>
 <li>因此，equals()方法被覆盖过，则hashCode()方法也必须被覆盖</li>
 </ol>
-<h4 id="5-为什么重写equals-方法的时候必须要重写hashCode"><a href="#5-为什么重写equals-方法的时候必须要重写hashCode" class="headerlink" title="5.为什么重写equals()方法的时候必须要重写hashCode()?"></a>5.为什么重写equals()方法的时候必须要重写hashCode()?</h4><p>&emsp;&emsp;重写equals()的目的是有的时候我们只需要判断两个对象的某些属性相等就认为它们相等，如果此时不重写hashCode(),基于堆内存地址的散列值除非产生hash冲突，那不然两个对象必定不相等。</p>
+<h4 id="5-为什么重写equals-方法的时候必须要重写hashCode"><a href="#5-为什么重写equals-方法的时候必须要重写hashCode" class="headerlink" title="5.为什么重写equals()方法的时候必须要重写hashCode()?"></a>5.为什么重写equals()方法的时候必须要重写hashCode()?</h4><p>&emsp;&emsp;重写equals()的目的是有的时候我们只需要判断两个对象的某些属性相等就认为它们相等，如果此时不重写hashCode(),基于堆内存地址的散列值除非产生hash冲突，那不然两个对象hashCode()必定不相等。如果不重写hashCode(),两个逻辑上相等的对象会被散列在散列表的不同位置。</p>
+<ol>
+<li><p>重写equals()，重写hashCode():</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    Book b1 &#x3D; new Book(1,&quot;三国演义&quot;,&quot;罗贯中&quot;);</span><br><span class="line">    Book b2 &#x3D; new Book(1,&quot;三国演义&quot;,&quot;罗贯中&quot;);</span><br><span class="line">    System.out.println(b1.equals(b2));</span><br><span class="line">    System.out.println(b1&#x3D;&#x3D;b2);</span><br><span class="line">    System.out.println(b1.hashCode());</span><br><span class="line">    System.out.println(b2.hashCode());</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">    true</span><br><span class="line">    false</span><br><span class="line">    1993172716</span><br><span class="line">    1993172716</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重写equals()，不重写hashCode():</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    Book b1 &#x3D; new Book(1,&quot;三国演义&quot;,&quot;罗贯中&quot;);</span><br><span class="line">    Book b2 &#x3D; new Book(1,&quot;三国演义&quot;,&quot;罗贯中&quot;);</span><br><span class="line">    System.out.println(b1.equals(b2));</span><br><span class="line">    System.out.println(b1&#x3D;&#x3D;b2);</span><br><span class="line">    System.out.println(b1.hashCode());</span><br><span class="line">    System.out.println(b2.hashCode());</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">    true</span><br><span class="line">    false</span><br><span class="line">    1989495347</span><br><span class="line">    614635686</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
 <h4 id="6-补充：什么是堆内存和栈内存？"><a href="#6-补充：什么是堆内存和栈内存？" class="headerlink" title="6.补充：什么是堆内存和栈内存？"></a>6.补充：什么是堆内存和栈内存？</h4><ol>
 <li>在Java中，栈(stack)是由编译器自动分配和释放的一块内存区域，主要用于存放一些基本类型（如int、float等）的变量、指令代码、常量及对象句柄（也就是对象的引用地址）</li>
 <li>堆（heap）是一个程序运行动态分配的内存区域，在Java中，构建对象时所需要的内存从堆中分配。这些对象通过new指令“显式”建立，这种分配方式类似于数据结构中的链表。堆内存在使用完毕后，是由垃圾回收（Garbage Collection,GC）器“隐式”回收的。</li>
@@ -298,7 +307,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            3
+                            4
                         </p>
                     </a>
                 </div>
@@ -310,7 +319,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            3
+                            4
                         </p>
                     </a>
                 </div>
@@ -322,7 +331,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            6
+                            7
                         </p>
                     </a>
                 </div>
@@ -383,6 +392,14 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/SpringMVC/">
+            <span class="level-start">
+                <span class="level-item">SpringMVC</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/%E7%94%9F%E6%B4%BB/">
             <span class="level-start">
                 <span class="level-item">生活</span>
@@ -415,6 +432,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hello-World/">
                         <span class="tag">Hello World</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC/">
+                        <span class="tag">SpringMVC</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -472,6 +496,19 @@
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T06:28:35.000Z">2020-02-16</time></div>
+                    <a href="/2020/02/16/springmvc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC工作原理详解(转载自SnailClimb在GitHub的开源项目JavaGide)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-15T15:54:35.000Z">2020-02-15</time></div>
                     <a href="/2020/02/15/interview/" class="title has-link-black-ter is-size-6 has-text-weight-normal">面试前的一些针对性复习计划</a>
                     <p class="is-size-7 is-uppercase">
@@ -524,7 +561,7 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -539,7 +576,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
+        <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
     </div>
 </div>
         
@@ -589,6 +626,19 @@
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T06:28:35.000Z">2020-02-16</time></div>
+                    <a href="/2020/02/16/springmvc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC工作原理详解(转载自SnailClimb在GitHub的开源项目JavaGide)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-15T15:54:35.000Z">2020-02-15</time></div>
                     <a href="/2020/02/15/interview/" class="title has-link-black-ter is-size-6 has-text-weight-normal">面试前的一些针对性复习计划</a>
                     <p class="is-size-7 is-uppercase">
@@ -641,7 +691,7 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -656,7 +706,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
+        <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
     </div>
 </div>
     
