@@ -7,12 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: 面试 - mili&#39;s blog</title>
+<title>标签: IOC - mili&#39;s blog</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="mili&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/IOC/index.html">
 <meta property="og:site_name" content="mili&#39;s blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
@@ -130,7 +130,7 @@
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">面试</a></li>
+            <li class="is-active"><a href="#" aria-current="page">IOC</a></li>
         </ul>
         </nav>
     </div>
@@ -143,17 +143,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-15T15:54:35.000Z">2020-02-15</time>
+                <time class="level-item has-text-grey" datetime="2020-02-16T13:54:04.000Z">2020-02-16</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 400 个字)
+                    2 小时 读完 (大约 19253 个字)
                 </span>
                 
                 
@@ -162,26 +162,19 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/02/15/interview/">面试前的一些针对性复习计划</a>
+                <a class="has-link-black-ter" href="/2020/02/16/20200216-ioc/">Spring IOC 容器源码分析(转载)</a>
             
         </h1>
         <div class="content">
-            <h4 id="1-准备面试的公司技术要求"><a href="#1-准备面试的公司技术要求" class="headerlink" title="1.准备面试的公司技术要求"></a>1.准备面试的公司技术要求</h4><ol>
-<li>熟练掌握IDEA开发工具，良好的编码习惯和风格</li>
-<li>熟练SpringMVC、SpringBoot、mybatis等开发框架</li>
-<li>良好的数据库知识mysql、redis、oracle、MQ等，强sql能力</li>
-<li>熟练使用linux常用命令、环境配置</li>
-<li>熟练使用Tomcat、Nginx等服务部署</li>
-<li>熟悉maven环境</li>
-<li>了解前端具备一定的开发经验，基本掌握：html、html5、css、css3，熟练掌握js代码编写，页面兼容性处理。</li>
-<li>熟练运用关系型数据库：musql/oracle，具备一定的数据库表设计经验
+            <p>原文地址 <a href="https://javadoop.com/post/spring-ioc">Javadoop</a><br>Spring 最重要的概念是 IOC 和 AOP，本篇文章其实就是要带领大家来分析下 Spring 的 IOC 容器。既然大家平时都要用到 Spring，怎么可以不好好了解 Spring 呢？阅读本文并不能让你成为 Spring 专家，不过一定有助于大家理解 Spring 的很多概念，帮助大家排查应用中和 Spring 相关的一些问题。</p>
+<p>本文采用的源码版本是 4.3.11.RELEASE，算是 5.0.x 前比较新的版本了。为了降低难度，本文所说的所有的内容都是基于 xml 的配置的方式，实际使用已经很少人这么做了，至少不是纯 xml 配置，不过从理解源码的角度来看用这种方式来说无疑是最合适的。</p>
         </div>
         
         
         <div class="level is-mobile" style="display: flex;justify-content: center;">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/15/interview/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2020/02/16/20200216-ioc/#more">阅读更多</a>
                 </div>
             </div>
         </div>
