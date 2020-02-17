@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Spring IOC - mili&#39;s blog</title>
+
+
+    <meta name="description" content="原文地址 江南一点雨-spring教程 1.IOC概念 Ioc(Inversion of Control)，中文叫做控制反转。这是一个概念，也是一种思想。控制反转，实际上就是指对一个对象的控制权的反转。如果一个对象的控制权在另一个对象里面，对象间就会高度耦合。如果需要在另一个对象当中用到该对象，就得重新创建对象。对象的创建、初始化、销毁等工作就得由开发者自己完成，将这些操作交给Spring容器来管">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring IOC">
+<meta property="og:url" content="http://yoursite.com/2020/02/17/ioc/index.html">
+<meta property="og:site_name" content="mili&#39;s blog">
+<meta property="og:description" content="原文地址 江南一点雨-spring教程 1.IOC概念 Ioc(Inversion of Control)，中文叫做控制反转。这是一个概念，也是一种思想。控制反转，实际上就是指对一个对象的控制权的反转。如果一个对象的控制权在另一个对象里面，对象间就会高度耦合。如果需要在另一个对象当中用到该对象，就得重新创建对象。对象的创建、初始化、销毁等工作就得由开发者自己完成，将这些操作交给Spring容器来管">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="article:published_time" content="2020-02-17T07:24:00.000Z">
+<meta property="article:modified_time" content="2020-02-17T09:59:41.534Z">
+<meta property="article:author" content="mili">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="IOC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/cat.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/cat.ico" alt="Spring IOC" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="Welcome to my GitHub!" href="https://github.com/zlgwzy">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-17T07:24:00.000Z">2020-02-17</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    15 分钟 读完 (大约 2286 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Spring IOC
+            
+        </h1>
+        <div class="content">
+            <p>原文地址 <a href="http://spring.javaboy.org/">江南一点雨-spring教程</a></p>
+<h4 id="1-IOC概念"><a href="#1-IOC概念" class="headerlink" title="1.IOC概念"></a>1.IOC概念</h4><ul>
+<li>Ioc(Inversion of Control)，中文叫做控制反转。这是一个概念，也是一种思想。控制反转，实际上就是指对一个对象的控制权的反转。如果一个对象的控制权在另一个对象里面，对象间就会高度耦合。如果需要在另一个对象当中用到该对象，就得重新创建对象。对象的创建、初始化、销毁等工作就得由开发者自己完成，将这些操作交给Spring容器来管理就可以变得十分轻松。</li>
+<li>使用Spring之后，项目启动时，所有的bean都将自己注册到Spring容器中去(如果有必要的话)，其他bean如果需要使用到另一个bean只需要去Spring容器里要。<a id="more"></a>
+
+</li>
+</ul>
+<h4 id="2-IOC初体验"><a href="#2-IOC初体验" class="headerlink" title="2.IOC初体验"></a>2.IOC初体验</h4><ul>
+<li><p>创建普通maven项目，引入spring-context依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-context&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>创建两个普通的bean</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Book &#123;</span><br><span class="line">    private Integer id;</span><br><span class="line">    private String name;</span><br><span class="line">    private Double price;</span><br><span class="line">    &#x2F;&#x2F;省略getter&#x2F;setter</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;显示指定无参构造方法，打印日志</span><br><span class="line">    public Book() &#123;</span><br><span class="line">        System.out.println(&quot;Book无参构造方法执行！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;省略toString方法</span><br><span class="line">&#125;</span><br><span class="line">public class Author &#123;</span><br><span class="line">    private Integer id;</span><br><span class="line">    private String name;</span><br><span class="line">    private Integer age;</span><br><span class="line">    &#x2F;&#x2F;省略getter&#x2F;setter</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>在resources目录下创建一个spring的配置文件springConfig.xml(先引入依赖才有配置文件模板选项)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;</span><br><span class="line">       xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">       xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--class属性表示需要注册的bean的全路径，id属性表示bean的唯一标记，也可以name属性作为bean的唯一标记--&gt;</span><br><span class="line">    &lt;bean class&#x3D;&quot;com.zlgwzy.Book&quot; id&#x3D;&quot;book&quot;&#x2F;&gt;</span><br><span class="line">    &lt;bean class&#x3D;&quot;com.zlgwzy.Author&quot; id&#x3D;&quot;author&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;beans&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在Main方法里面加载配置文件，获取bean并打印bean</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        &#x2F;&#x2F;加载配置文件,加载方式，除了ClassPathXmlApplicationContext 之外（去 classpath 下查找配置文件），另外也可以使用 FileSystemXmlApplicationContext ，FileSystemXmlApplicationContext 会从操作系统路径下去寻找配置文件。</span><br><span class="line">        ClassPathXmlApplicationContext context &#x3D; new ClassPathXmlApplicationContext(&quot;springConfig.xml&quot;);</span><br><span class="line">        Book book &#x3D; (Book) context.getBean(&quot;book&quot;);</span><br><span class="line">        System.out.println(book);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="3-bean的获取"><a href="#3-bean的获取" class="headerlink" title="3.bean的获取"></a>3.bean的获取</h4><ol>
+<li>通过bean的id或者name属性获取</li>
+<li>直接通过class获取bean,如果在配置文件中存在一个bean的多个实例就会抛异常(NoUniqueBeanDefinitionException),一般建议通过id或name属性去获取bean实例</li>
+</ol>
+<h4 id="4-属性的注入"><a href="#4-属性的注入" class="headerlink" title="4.属性的注入"></a>4.属性的注入</h4><p>给Book添加构造方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public Book(Integer id, String name, Double price) &#123;</span><br><span class="line">    this.id &#x3D; id;</span><br><span class="line">    this.name &#x3D; name;</span><br><span class="line">    this.price &#x3D; price;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>xml中注入bean，可以通过name或者index注入.如果有多个构造方法，则会根据给出参数个数以及参数类型，自动匹配到对应的构造方法上，进而初始化一个对象。</p>
+<ol>
+<li>构造方法注入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;com.zlgwzy.Book&quot; id&#x3D;&quot;book3&quot;&gt;</span><br><span class="line">    &lt;constructor-arg index&#x3D;&quot;0&quot; value&#x3D;&quot;3&quot;&#x2F;&gt;</span><br><span class="line">    &lt;constructor-arg index&#x3D;&quot;1&quot; value&#x3D;&quot;图解HTTP&quot;&#x2F;&gt;</span><br><span class="line">    &lt;constructor-arg index&#x3D;&quot;2&quot; value&#x3D;&quot;35.00&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;com.zlgwzy.Book&quot; id&#x3D;&quot;book4&quot;&gt;</span><br><span class="line">    &lt;constructor-arg name&#x3D;&quot;id&quot; value&#x3D;&quot;4&quot;&#x2F;&gt;</span><br><span class="line">    &lt;constructor-arg name&#x3D;&quot;name&quot; value&#x3D;&quot;图解TCP&#x2F;IP&quot;&#x2F;&gt;</span><br><span class="line">    &lt;constructor-arg name&#x3D;&quot;price&quot; value&#x3D;&quot;35.00&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure></li>
+<li>set方法注入<br>&emsp;&emsp;在所有的框架中，凡是涉及到反射注入值的，属性名统统都不是 Bean 中定义的属性名，而是通过 Java 中的内省机制分析出来的属性名，简单说，就是根据 get/set 方法分析出来的属性名。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Book book1 &#x3D; (Book) context.getBean(&quot;book1&quot;);</span><br><span class="line">book1.setId(1);</span><br><span class="line">book1.setName(&quot;算法(第四版)&quot;);</span><br><span class="line">book1.setPrice(45.00);</span><br><span class="line">Book book2 &#x3D; (Book) context.getBean(&quot;book2&quot;);</span><br><span class="line">book2.setId(2);</span><br><span class="line">book2.setName(&quot;SpringBoot+Vue全栈开发实战&quot;);</span><br><span class="line">book2.setPrice(69.00);</span><br></pre></td></tr></table></figure></li>
+<li>p名称空间注入，本质也调用了set方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;com.zlgwzy.Book&quot; id&#x3D;&quot;book5&quot; p:id&#x3D;&quot;5&quot; p:name&#x3D;&quot;Vue项目实战&quot; p:price&#x3D;&quot;45.00&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure></li>
+<li>外部bean的注入<br>&emsp;&emsp;有时候，我们使用一些外部 Bean，这些 Bean 可能没有构造方法，而是通过 Builder 来构造的，这个时候，就无法使用上面的方式来给它注入值了。<br>&emsp;&emsp;例如在 OkHttp 的网络请求中，原生的写法如下:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class OkHttpMain &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        OkHttpClient okHttpClient &#x3D; new OkHttpClient.Builder()</span><br><span class="line">                .build();</span><br><span class="line">        Request request &#x3D; new Request.Builder()</span><br><span class="line">                .get()</span><br><span class="line">                .url(&quot;http:&#x2F;&#x2F;b.hiphotos.baidu.com&#x2F;image&#x2F;h%3D300&#x2F;sign&#x3D;ad628627aacc7cd9e52d32d909032104&#x2F;32fa828ba61ea8d3fcd2e9ce9e0a304e241f5803.jpg&quot;)</span><br><span class="line">                .build();</span><br><span class="line">        Call call &#x3D; okHttpClient.newCall(request);</span><br><span class="line">        call.enqueue(new Callback() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onFailure(@NotNull Call call, @NotNull IOException e) &#123;</span><br><span class="line">                System.out.println(e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException &#123;</span><br><span class="line">                FileOutputStream out &#x3D; new FileOutputStream(new File(&quot;E:\\123.jpg&quot;));</span><br><span class="line">                int len;</span><br><span class="line">                byte[] buf &#x3D; new byte[1024];</span><br><span class="line">                InputStream is &#x3D; response.body().byteStream();</span><br><span class="line">                while ((len &#x3D; is.read(buf)) !&#x3D; -1) &#123;</span><br><span class="line">                    out.write(buf, 0, len);</span><br><span class="line">                &#125;</span><br><span class="line">                out.close();</span><br><span class="line">                is.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+&emsp;&emsp;这个 Bean 有一个特点，OkHttpClient 和 Request 两个实例都不是直接 new 出来的，在调用 Builder 方法的过程中，都会给它配置一些默认的参数。这种情况，我们可以使用 静态工厂注入或者实例工厂注入来给 OkHttpClient 提供一个实例。<ol>
+<li>静态工厂注入<br>首先提供一个 OkHttpClient 的静态工厂:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> public class OkHttpUtils &#123;</span><br><span class="line">     &#x2F;&#x2F;工厂类为静态</span><br><span class="line">    private static OkHttpClient OkHttpClient;</span><br><span class="line">    public static OkHttpClient getInstance() &#123;</span><br><span class="line">        if (OkHttpClient &#x3D;&#x3D; null) &#123;</span><br><span class="line">            OkHttpClient &#x3D; new OkHttpClient.Builder().build();</span><br><span class="line">        &#125;</span><br><span class="line">        return OkHttpClient;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+在 xml 文件中，配置该静态工厂：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;org.javaboy.OkHttpUtils&quot; factory-method&#x3D;&quot;getInstance&quot; id&#x3D;&quot;okHttpClient&quot;&gt;&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+这个配置表示 OkHttpUtils 类中的 getInstance 是我们需要的实例，实例的名字就叫 okHttpClient。然后，在 Java 代码中，获取到这个实例，就可以直接使用了。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class OkHttpMain &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        ClassPathXmlApplicationContext ctx &#x3D; new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</span><br><span class="line">        OkHttpClient okHttpClient &#x3D; ctx.getBean(&quot;okHttpClient&quot;, OkHttpClient.class);</span><br><span class="line">        Request request &#x3D; new Request.Builder()</span><br><span class="line">                .get()</span><br><span class="line">                .url(&quot;http:&#x2F;&#x2F;b.hiphotos.baidu.com&#x2F;image&#x2F;h%3D300&#x2F;sign&#x3D;ad628627aacc7cd9e52d32d909032104&#x2F;32fa828ba61ea8d3fcd2e9ce9e0a304e241f5803.jpg&quot;)</span><br><span class="line">                .build();</span><br><span class="line">        Call call &#x3D; okHttpClient.newCall(request);</span><br><span class="line">        call.enqueue(new Callback() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onFailure(@NotNull Call call, @NotNull IOException e) &#123;</span><br><span class="line">                System.out.println(e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException &#123;</span><br><span class="line">                FileOutputStream out &#x3D; new FileOutputStream(new File(&quot;E:\\123.jpg&quot;));</span><br><span class="line">                int len;</span><br><span class="line">                byte[] buf &#x3D; new byte[1024];</span><br><span class="line">                InputStream is &#x3D; response.body().byteStream();</span><br><span class="line">                while ((len &#x3D; is.read(buf)) !&#x3D; -1) &#123;</span><br><span class="line">                    out.write(buf, 0, len);</span><br><span class="line">                &#125;</span><br><span class="line">                out.close();</span><br><span class="line">                is.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>实例工厂注入<br>&emsp;&emsp;实例工厂就是工厂方法是一个实例方法，这样，工厂类必须实例化之后才可以调用工厂方法。<br>&emsp;&emsp;这次的工厂类:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class OkHttpUtils &#123;</span><br><span class="line">    &#x2F;&#x2F;工厂类必须先实例化</span><br><span class="line">    private OkHttpClient OkHttpClient;</span><br><span class="line">    public OkHttpClient getInstance() &#123;</span><br><span class="line">        if (OkHttpClient &#x3D;&#x3D; null) &#123;</span><br><span class="line">            OkHttpClient &#x3D; new OkHttpClient.Builder().build();</span><br><span class="line">        &#125;</span><br><span class="line">        return OkHttpClient;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+&emsp;&emsp;此时，在 xml 文件中，需要首先提供工厂方法的实例，然后才可以调用工厂方法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;com.zlgwzy.OkHttpUtils&quot; id&#x3D;&quot;okHttpUtils&quot;&#x2F;&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;okhttp3.OkHttpClient&quot; factory-bean&#x3D;&quot;okHttpUtils&quot; factory-method&#x3D;&quot;getInstance&quot; id&#x3D;&quot;okHttpClient&quot;&gt;&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+&emsp;&emsp;自己写的 Bean 一般不会使用这两种方式注入，但是，如果需要引入外部 jar，外部 jar 的类的初始化，有可能需要使用这两种方式。</li>
+</ol>
+<h4 id="5-复杂属性的注入"><a href="#5-复杂属性的注入" class="headerlink" title="5.复杂属性的注入"></a>5.复杂属性的注入</h4><ol>
+<li><p>对象注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;定义一个user对象</span><br><span class="line">public class User &#123;</span><br><span class="line">    private Book book;</span><br><span class="line">    private String[] favoritesSport;</span><br><span class="line">    private List&lt;Book&gt; favoritesBooks;</span><br><span class="line">    private Map&lt;Integer,String&gt; map;</span><br><span class="line">    private Properties info;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;省略toString和get&#x2F;set方法</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;通过xml注入对象，通过ref引入一个对象</span><br><span class="line">    &lt;bean class&#x3D;&quot;com.zlgwzy.User&quot; id&#x3D;&quot;user&quot;&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;book&quot; ref&#x3D;&quot;book6&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;bean&gt;</span><br><span class="line">    &lt;bean class&#x3D;&quot;com.zlgwzy.Book&quot; id&#x3D;&quot;book6&quot;&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;id&quot; value&#x3D;&quot;6&quot;&#x2F;&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;name&quot; value&#x3D;&quot;三国演义&quot;&#x2F;&gt;</span><br><span class="line">        &lt;property name&#x3D;&quot;price&quot; value&#x3D;&quot;30.00&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+<p>2.数组注入<br>注意，即可以通过 ref 使用外部定义好的 Bean，也可以直接在 list 或者 array 节点中定义 bean</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;com.zlgwzy.User&quot; id&#x3D;&quot;user&quot;&gt;</span><br><span class="line">    &lt;property name&#x3D;&quot;book&quot; ref&#x3D;&quot;book6&quot;&#x2F;&gt;</span><br><span class="line">    &lt;property name&#x3D;&quot;favoritesSport&quot;&gt;</span><br><span class="line">        &lt;array&gt;</span><br><span class="line">            &lt;value&gt;听歌&lt;&#x2F;value&gt;</span><br><span class="line">            &lt;value&gt;看电影&lt;&#x2F;value&gt;</span><br><span class="line">            &lt;value&gt;写代码&lt;&#x2F;value&gt;</span><br><span class="line">        &lt;&#x2F;array&gt;</span><br><span class="line">    &lt;&#x2F;property&gt;</span><br><span class="line">    &lt;property name&#x3D;&quot;favoritesBooks&quot;&gt;</span><br><span class="line">        &lt;list&gt;</span><br><span class="line">            &lt;ref bean&#x3D;&quot;book1&quot;&#x2F;&gt;</span><br><span class="line">            &lt;ref bean&#x3D;&quot;book2&quot;&#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;list&gt;</span><br><span class="line">    &lt;&#x2F;property&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3.Map注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  &lt;property name&#x3D;&quot;map&quot;&gt;</span><br><span class="line">    &lt;map&gt;</span><br><span class="line">        &lt;entry key&#x3D;&quot;1&quot; value&#x3D;&quot;第一项&quot;&#x2F;&gt;</span><br><span class="line">        &lt;entry key&#x3D;&quot;2&quot; value&#x3D;&quot;第二项&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;map&gt;</span><br><span class="line">&lt;&#x2F;property&gt;</span><br></pre></td></tr></table></figure>
+<p>4.Properties注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;property name&#x3D;&quot;info&quot;&gt;</span><br><span class="line">    &lt;props&gt;</span><br><span class="line">        &lt;prop key&#x3D;&quot;age&quot;&gt;23&lt;&#x2F;prop&gt;</span><br><span class="line">        &lt;prop key&#x3D;&quot;name&quot;&gt;mili&lt;&#x2F;prop&gt;</span><br><span class="line">    &lt;&#x2F;props&gt;</span><br><span class="line">&lt;&#x2F;property&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="6-Java配置"><a href="#6-Java配置" class="headerlink" title="6.Java配置"></a>6.Java配置</h4><p>&emsp;&emsp;在 Spring 中，想要将一个 Bean 注册到 Spring 容器中，整体上来说，有三种不同的方式。</p>
+<ul>
+<li>xml注入</li>
+<li>Java配置(通过java代码将bean注册到spring容器)</li>
+<li>自动化扫描<br>&emsp;&emsp;Java 配置这种方式在 Spring Boot 出现之前，其实很少使用，自从有了 Spring Boot，Java 配置开发被广泛使用，因为在 Spring Boot 中，不使用一行 XML 配置。<ol>
+<li>例如有如下的bean:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class MachineBoot &#123;</span><br><span class="line">    public String boot(Integer id)&#123;</span><br><span class="line">        return id + &quot;号机启动成功！&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建Java配置类代替xml文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class JavaConfig &#123;</span><br><span class="line">    @Bean</span><br><span class="line">    MachineBoot boot()&#123;</span><br><span class="line">        return new MachineBoot();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>main方法里面加载配置，获取bean，调用bean里面的方法(通过AnnotationConfigApplicationContext加载配置)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AnnotationConfigApplicationContext context &#x3D; new AnnotationConfigApplicationContext(JavaConfig.class);</span><br><span class="line">MachineBoot machineBoot &#x3D; (MachineBoot) context.getBean(&quot;boot&quot;);</span><br><span class="line">System.out.println(machineBoot.boot(9));</span><br></pre></td></tr></table></figure>
+bean的默认名称为方法名，也可以在@Bean注解的后面自定义bean名称</li>
+</ol>
+</li>
+</ul>
+<h4 id="7-自动化配置"><a href="#7-自动化配置" class="headerlink" title="7.自动化配置"></a>7.自动化配置</h4><p> &emsp;&emsp;例如我有一个 UserService，我希望在自动化扫描时，这个类能够自动注册到 Spring 容器中去，那么可以给该类添加一个 @Service，作为一个标记。<br> &emsp;&emsp;和 @Service 注解功能类似的注解，一共有四个：</p>
+<ul>
+<li>@Component   用于其他组件</li>
+<li>@Repository  用于Dao层</li>
+<li>@Service     用于Service层</li>
+<li>@Controller  用于Controlelr层</li>
+</ul>
+<ol>
+<li>Java代码自动扫描，@ComponentScan配置自动扫描的包，自动将有注解的bean注册到spring容器(如果不指定扫描的包，默认扫描配置类所在的包以及子包下的bean)</li>
+<li>除了按照包的位置扫描，也可以按照注解进行扫描</li>
+<li>xml配置自动扫描<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;扫描包下的所有bean</span><br><span class="line">&lt;context:component-scan base-package&#x3D;&quot;org.javaboy.javaconfig&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;按照注解进行扫描</span><br><span class="line">&lt;context:component-scan base-package&#x3D;&quot;org.javaboy.javaconfig&quot; use-default-filters&#x3D;&quot;true&quot;&gt;</span><br><span class="line">    &lt;context:exclude-filter type&#x3D;&quot;annotation&quot; expression&#x3D;&quot;org.springframework.stereotype.Controller&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;context:component-scan&gt;</span><br></pre></td></tr></table></figure></li>
+<li>对象注入</li>
+</ol>
+<ul>
+<li>@Autowired</li>
+<li>@Resources</li>
+<li>@Injected<br>&emsp;&emsp;@Autowired 是根据类型去查找，然后赋值，这就有一个要求，这个类型只可以有一个对象，否则就会报错。@Resources 是根据名称去查找，默认情况下，定义的变量名，就是查找的名称，当然开发者也可以在 @Resources 注解中手动指定。所以，如果一个类存在多个实例，那么就应该使用 @Resources 去注入，如果非常使用 @Autowired，也是可以的，此时需要配合另外一个注解，@Qualifier，在 @Qualifier 中可以指定变量名，两个一起用（@Qualifier 和 @Autowired）就可以实现通过变量名查找到变量。</li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/IOC/" rel="tag">IOC</a>, <a class="has-link-grey -link" href="/tags/Spring/" rel="tag">Spring</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat_pay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/16/20200216-ioc/">
+                <span class="level-item">Spring IOC 容器源码分析(转载)</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/wechat_mili.png" alt="mili">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        mili
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        自律给我自由
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China ChengDu</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            7
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            10
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/zlgwzy" target="_blank" rel="noopener">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/zlgwzy">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="E-Mail" href="mailto:mili_work@163.com">
+                
+                <i class="fa fa-envelope"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Spring/">
+            <span class="level-start">
+                <span class="level-item">Spring</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/SpringMVC/">
+            <span class="level-start">
+                <span class="level-item">SpringMVC</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E7%94%9F%E6%B4%BB/">
+            <span class="level-start">
+                <span class="level-item">生活</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E9%9D%A2%E8%AF%95/">
+            <span class="level-start">
+                <span class="level-item">面试</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AOP/">
+                        <span class="tag">AOP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hello-World/">
+                        <span class="tag">Hello World</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IOC/">
+                        <span class="tag">IOC</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring/">
+                        <span class="tag">Spring</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC/">
+                        <span class="tag">SpringMVC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/equals/">
+                        <span class="tag">equals</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hashcode/">
+                        <span class="tag">hashcode</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hexo/">
+                        <span class="tag">hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/">
+                        <span class="tag">日常计划</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/">
+                        <span class="tag">面试</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-17T07:24:00.000Z">2020-02-17</time></div>
+                    <a href="/2020/02/17/ioc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring IOC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T13:54:04.000Z">2020-02-16</time></div>
+                    <a href="/2020/02/16/20200216-ioc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring IOC 容器源码分析(转载)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T11:15:35.000Z">2020-02-16</time></div>
+                    <a href="/2020/02/16/aop/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring AOP的实现原理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T06:28:35.000Z">2020-02-16</time></div>
+                    <a href="/2020/02/16/springmvc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC工作原理详解(转载自SnailClimb在GitHub的开源项目JavaGide)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-15T15:54:35.000Z">2020-02-15</time></div>
+                    <a href="/2020/02/15/interview/" class="title has-link-black-ter is-size-6 has-text-weight-normal">面试前的一些针对性复习计划</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 15px;">IOC</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://www.javaboy.org/" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">江南一点雨</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.javaboy.org</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-17T07:24:00.000Z">2020-02-17</time></div>
+                    <a href="/2020/02/17/ioc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring IOC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T13:54:04.000Z">2020-02-16</time></div>
+                    <a href="/2020/02/16/20200216-ioc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring IOC 容器源码分析(转载)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T11:15:35.000Z">2020-02-16</time></div>
+                    <a href="/2020/02/16/aop/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring AOP的实现原理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T06:28:35.000Z">2020-02-16</time></div>
+                    <a href="/2020/02/16/springmvc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC工作原理详解(转载自SnailClimb在GitHub的开源项目JavaGide)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-15T15:54:35.000Z">2020-02-15</time></div>
+                    <a href="/2020/02/15/interview/" class="title has-link-black-ter is-size-6 has-text-weight-normal">面试前的一些针对性复习计划</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 15px;">IOC</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://www.javaboy.org/" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">江南一点雨</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.javaboy.org</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer" style="background-color: rgba(14,185,118,1);width: 100%;height: 100%;">
+    <div class="container" style="display: flex;flex-direction: column;align-items: center;font-size: 14px;">
+        <div>
+            <span id="timeDate" style="color:white;">载入天数...</span><span id="times"
+            style="color:white;">载入时分秒...</span>
+        <script>
+            var now = new Date();
+
+            function createtime() {
+                var grt = new Date("02/02/2020 20:20:20");
+                now.setTime(now.getTime() + 250);
+                days = (now - grt) / 1000 / 60 / 60 / 24;
+                dnum = Math.floor(days);
+                hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+                hnum = Math.floor(hours);
+                if (String(hnum).length == 1) {
+                    hnum = "0" + hnum;
+                }
+                minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                mnum = Math.floor(minutes);
+                if (String(mnum).length == 1) {
+                    mnum = "0" + mnum;
+                }
+                seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                snum = Math.round(seconds);
+                if (String(snum).length == 1) {
+                    snum = "0" + snum;
+                }
+                document.getElementById("timeDate").innerHTML = "博客已运行 " + dnum + " 天 ";
+                document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+            }
+            setInterval("createtime()", 250);
+        </script>
+        </div>
+
+        <div>
+            <span style="color:white;">
+                Copyright © 2020 mili
+            </span>
+        </div>
+
+        <div>
+            <span style="color:white;font-size: 16px;">
+                哪有什么天生如此<i class="fas fa-heart throb" style="color:#d43f57"></i>只是我们天天坚持
+            </span>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
