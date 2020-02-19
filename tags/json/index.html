@@ -7,12 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>分类: Java - mili&#39;s blog</title>
+<title>标签: json - mili&#39;s blog</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="mili&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/categories/Java/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/json/index.html">
 <meta property="og:site_name" content="mili&#39;s blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
@@ -129,9 +129,8 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/categories">分类</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">Java</a></li>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">json</a></li>
         </ul>
         </nav>
     </div>
@@ -144,17 +143,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-15T10:12:35.000Z">2020-02-15</time>
+                <time class="level-item has-text-grey" datetime="2020-02-19T07:40:00.000Z">2020-02-19</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1311 个字)
+                    4 分钟 读完 (大约 665 个字)
                 </span>
                 
                 
@@ -163,23 +162,21 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/02/15/equals-hashcode/">重写equals方法为什么要重写hashcode?</a>
+                <a class="has-link-black-ter" href="/2020/02/19/json/">SpringMVC中json处理和踩坑记录</a>
             
         </h1>
         <div class="content">
-            <h4 id="1-要讨论这个问题必须先明白-和equals的区别"><a href="#1-要讨论这个问题必须先明白-和equals的区别" class="headerlink" title="1.要讨论这个问题必须先明白==和equals的区别"></a>1.要讨论这个问题必须先明白==和equals的区别</h4><p>&emsp;&emsp;== : 它的作用是判断两个对象的地址是不是相等。即，判断两个对象是不是同一个对象(基本数据类型==比较的是值，引用数据类型==比较的是内存地址)。</p>
-<p>&emsp;&emsp;equals():它的作用也是判断两个对象是否相等。但它一般有两种使用情况：</p>
-<ul>
-<li><p>情况1：类没有覆盖equals()方法。则通过equals()比较该类的两个对象时，等价于通过”==”比较这两个对象。</p>
-</li>
-<li><p>情况2：类覆盖了equals()方法。一般，我们都覆盖equals()方法来比较两个对象的内容是否相等；若它们的内容相等，则返回 true (即，认为这两个对象相等)。</p>
+            <h4 id="1-三种主流的json处理工具"><a href="#1-三种主流的json处理工具" class="headerlink" title="1.三种主流的json处理工具"></a>1.三种主流的json处理工具</h4><ul>
+<li>jackson</li>
+<li>gson</li>
+<li>fastjson<br>&emsp;&emsp;在 SpringMVC 中，对 jackson 和 gson 都提供了相应的支持，就是如果使用这两个作为 JSON 转换器，只需要添加对应的依赖就可以了，返回的对象和返回的集合、Map 等都会自动转为 JSON，但是，如果使用 fastjson，除了添加相应的依赖之外，还需要自己手动配置 HttpMessageConverter 转换器。其实前两个也是使用 HttpMessageConverter 转换器，但是是 SpringMVC 自动提供的，SpringMVC 没有给 fastjson 提供相应的转换器。
         </div>
         
         
         <div class="level is-mobile" style="display: flex;justify-content: center;">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/15/equals-hashcode/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2020/02/19/json/#more">阅读更多</a>
                 </div>
             </div>
         </div>

@@ -7,22 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>SpringMVC中文件上传和踩坑记录 - mili&#39;s blog</title>
+<title>SpringMVC中json处理和踩坑记录 - mili&#39;s blog</title>
 
 
-    <meta name="description" content="1.SpringMVC中的两个文件上传处理器 CommonsMultipartResolver(兼容Servlet3.0之前的版本，需要 commons-fileupload 依赖) StandardServletMultipartResolver(适用于 Servlet3.0 之后的版本，不需要依赖)  2.CommonsMultipartResolver(上传文件的实现) 添加commons-">
+    <meta name="description" content="1.三种主流的json处理工具 jackson gson fastjson&amp;emsp;&amp;emsp;在 SpringMVC 中，对 jackson 和 gson 都提供了相应的支持，就是如果使用这两个作为 JSON 转换器，只需要添加对应的依赖就可以了，返回的对象和返回的集合、Map 等都会自动转为 JSON，但是，如果使用 fastjson，除了添加相应的依赖之外，还需要自己手动配置 HttpMe">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringMVC中文件上传和踩坑记录">
-<meta property="og:url" content="http://yoursite.com/2020/02/19/ioc/index.html">
+<meta property="og:title" content="SpringMVC中json处理和踩坑记录">
+<meta property="og:url" content="http://yoursite.com/2020/02/19/json/index.html">
 <meta property="og:site_name" content="mili&#39;s blog">
-<meta property="og:description" content="1.SpringMVC中的两个文件上传处理器 CommonsMultipartResolver(兼容Servlet3.0之前的版本，需要 commons-fileupload 依赖) StandardServletMultipartResolver(适用于 Servlet3.0 之后的版本，不需要依赖)  2.CommonsMultipartResolver(上传文件的实现) 添加commons-">
+<meta property="og:description" content="1.三种主流的json处理工具 jackson gson fastjson&amp;emsp;&amp;emsp;在 SpringMVC 中，对 jackson 和 gson 都提供了相应的支持，就是如果使用这两个作为 JSON 转换器，只需要添加对应的依赖就可以了，返回的对象和返回的集合、Map 等都会自动转为 JSON，但是，如果使用 fastjson，除了添加相应的依赖之外，还需要自己手动配置 HttpMe">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="article:published_time" content="2020-02-19T06:21:00.000Z">
-<meta property="article:modified_time" content="2020-02-19T07:03:15.526Z">
+<meta property="article:published_time" content="2020-02-19T07:40:00.000Z">
+<meta property="article:modified_time" content="2020-02-19T08:34:38.047Z">
 <meta property="article:author" content="mili">
-<meta property="article:tag" content="文件上传">
 <meta property="article:tag" content="SpringMVC">
+<meta property="article:tag" content="json">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
@@ -82,7 +82,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/cat.ico" alt="SpringMVC中文件上传和踩坑记录" height="28">
+                <img src="/images/cat.ico" alt="SpringMVC中json处理和踩坑记录" height="28">
             
             </a>
         </div>
@@ -138,17 +138,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-19T06:21:00.000Z">2020-02-19</time>
+                <time class="level-item has-text-grey" datetime="2020-02-19T07:40:00.000Z">2020-02-19</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Spring/SpringMVC/">SpringMVC</a>
+                <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 710 个字)
+                    4 分钟 读完 (大约 665 个字)
                 </span>
                 
                 
@@ -157,52 +157,56 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                SpringMVC中文件上传和踩坑记录
+                SpringMVC中json处理和踩坑记录
             
         </h1>
         <div class="content">
-            <h4 id="1-SpringMVC中的两个文件上传处理器"><a href="#1-SpringMVC中的两个文件上传处理器" class="headerlink" title="1.SpringMVC中的两个文件上传处理器"></a>1.SpringMVC中的两个文件上传处理器</h4><ul>
-<li>CommonsMultipartResolver(兼容Servlet3.0之前的版本，需要 commons-fileupload 依赖)</li>
-<li>StandardServletMultipartResolver(适用于 Servlet3.0 之后的版本，不需要依赖)</li>
+            <h4 id="1-三种主流的json处理工具"><a href="#1-三种主流的json处理工具" class="headerlink" title="1.三种主流的json处理工具"></a>1.三种主流的json处理工具</h4><ul>
+<li>jackson</li>
+<li>gson</li>
+<li>fastjson<br>&emsp;&emsp;在 SpringMVC 中，对 jackson 和 gson 都提供了相应的支持，就是如果使用这两个作为 JSON 转换器，只需要添加对应的依赖就可以了，返回的对象和返回的集合、Map 等都会自动转为 JSON，但是，如果使用 fastjson，除了添加相应的依赖之外，还需要自己手动配置 HttpMessageConverter 转换器。其实前两个也是使用 HttpMessageConverter 转换器，但是是 SpringMVC 自动提供的，SpringMVC 没有给 fastjson 提供相应的转换器。<a id="more"></a>
+
+</li>
 </ul>
-<h4 id="2-CommonsMultipartResolver-上传文件的实现"><a href="#2-CommonsMultipartResolver-上传文件的实现" class="headerlink" title="2.CommonsMultipartResolver(上传文件的实现)"></a>2.CommonsMultipartResolver(上传文件的实现)</h4><ol>
-<li>添加commons-fileupload依赖<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;commons-fileupload&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;commons-fileupload&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
-<a id="more"></a></li>
-<li>SpringMVC配置文件中配置MultipartResolver<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;org.springframework.web.multipart.commons.CommonsMultipartResolver&quot; id&#x3D;&quot;multipartResolver&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure></li>
-<li>创建jsp页面<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType&#x3D;&quot;text&#x2F;html;charset&#x3D;UTF-8&quot; language&#x3D;&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;文件上传&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;&#x2F;doUpload&quot; method&#x3D;&quot;post&quot; enctype&#x3D;&quot;multipart&#x2F;form-data&quot;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;file&quot; name&#x3D;&quot;file&quot;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;上传&quot;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure></li>
-<li>文件上传接口<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">    @RequestMapping(&quot;&#x2F;doUpload&quot;)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public String doUpload(MultipartFile file, HttpServletRequest request) &#123;</span><br><span class="line">        String format &#x3D; simpleDateFormat.format(new Date());</span><br><span class="line">        &#x2F;&#x2F;上传文件到当前项目运行目录下</span><br><span class="line">        String realPath &#x3D; request.getServletContext().getRealPath(&quot;&#x2F;images&quot;) + format;</span><br><span class="line">&#x2F;&#x2F;        String realPath &#x3D; &quot;F:&#x2F;images&quot; + format;</span><br><span class="line">        File folder &#x3D; new File(realPath);</span><br><span class="line">        &#x2F;&#x2F;判断文件夹是否存在</span><br><span class="line">        if (!folder.exists()) &#123;</span><br><span class="line">            folder.mkdirs();</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;获取上传文件的文件名</span><br><span class="line">        String oldName &#x3D; file.getOriginalFilename();</span><br><span class="line">        &#x2F;&#x2F;UUID生成随机字符串，字符串截取生成新的文件名</span><br><span class="line">        String newName &#x3D; UUID.randomUUID().toString() + oldName.substring(oldName.lastIndexOf(&quot;.&quot;));</span><br><span class="line">        try &#123;</span><br><span class="line">            &#x2F;&#x2F;将文件写入到目标文件夹并重命名</span><br><span class="line">            file.transferTo(new File(folder, newName));</span><br><span class="line">            &#x2F;&#x2F;返回上传的文件路径</span><br><span class="line">            String url &#x3D; request.getScheme() + &quot;:&#x2F;&#x2F;&quot; + request.getServerName() + &quot;:&quot; + request.getServerPort() + &quot;&#x2F;images&quot; + format + newName;</span><br><span class="line">&#x2F;&#x2F;            String url &#x3D; &quot;file:&#x2F;&#x2F;&#x2F;&quot; + realPath + newName;</span><br><span class="line">            return url;</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        return &quot;上传失败！&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-jackson"><a href="#2-jackson" class="headerlink" title="2.jackson"></a>2.jackson</h4><ol>
+<li>添加依赖<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.fasterxml.jackson.core&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jackson-core&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.10.2&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.fasterxml.jackson.core&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jackson-databind&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.9.9&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>后端返回的对象通过 HttpMessageConverter 自动转为 JSON 字符串。</li>
+<li>返回json数组<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> @RequestMapping(&quot;&#x2F;books&quot;)</span><br><span class="line">@ResponseBody</span><br><span class="line">public List&lt;Book&gt; getBooks() &#123;</span><br><span class="line">    List&lt;Book&gt; books &#x3D; new ArrayList&lt;Book&gt;();</span><br><span class="line">    for (int i &#x3D; 0; i &lt; 10; i++) &#123;</span><br><span class="line">        Book book &#x3D; new Book();</span><br><span class="line">        book.setId(i);</span><br><span class="line">        book.setName(&quot;SpringBoot + Vue 全栈开发实战&quot;);</span><br><span class="line">        book.setAuthor(&quot;王松&quot;);</span><br><span class="line">        book.setPublish(new Date());</span><br><span class="line">        books.add(book);</span><br><span class="line">    &#125;</span><br><span class="line">    return books;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>自定义日期格式(将注解加到实体类上，可以作用于实体类的所有日期属性上)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;在实体类的日期属性上加上注解</span><br><span class="line">@JsonFormat(pattern &#x3D; &quot;yyyy-MM-dd&quot;,timezone &#x3D; &quot;Asia&#x2F;Shanghai&quot;)</span><br></pre></td></tr></table></figure></li>
+<li>自定义日期格式，全局配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> &lt;mvc:annotation-driven&gt;</span><br><span class="line">    &#x2F;&#x2F;提供一个converter     </span><br><span class="line">    &lt;mvc:message-converters&gt;</span><br><span class="line">        &lt;ref bean&#x3D;&quot;httpMessageConverter&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;mvc:message-converters&gt;</span><br><span class="line">&lt;&#x2F;mvc:annotation-driven&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;定义一个converter</span><br><span class="line">&lt;bean class&#x3D;&quot;org.springframework.http.converter.json.MappingJackson2HttpMessageConverter&quot; id&#x3D;&quot;httpMessageConverter&quot;&gt;</span><br><span class="line">    &lt;property name&#x3D;&quot;objectMapper&quot;&gt;</span><br><span class="line">        &lt;bean class&#x3D;&quot;com.fasterxml.jackson.databind.ObjectMapper&quot;&gt;</span><br><span class="line">            &lt;property name&#x3D;&quot;dateFormat&quot;&gt;</span><br><span class="line">                &lt;bean class&#x3D;&quot;java.text.SimpleDateFormat&quot;&gt;</span><br><span class="line">                    &lt;constructor-arg name&#x3D;&quot;pattern&quot; value&#x3D;&quot;yyyy-MM-dd HH:mm:ss&quot;&#x2F;&gt;</span><br><span class="line">                &lt;&#x2F;bean&gt;</span><br><span class="line">            &lt;&#x2F;property&gt;</span><br><span class="line">            &lt;property name&#x3D;&quot;timeZone&quot; value&#x3D;&quot;Asia&#x2F;Shanghai&quot;&#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;bean&gt;</span><br><span class="line">    &lt;&#x2F;property&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<ol start="5">
-<li>自定义上传文件配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;org.springframework.web.multipart.commons.CommonsMultipartResolver&quot; id&#x3D;&quot;multipartResolver&quot;&gt;</span><br><span class="line">  &lt;!--默认的编码--&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;defaultEncoding&quot; value&#x3D;&quot;UTF-8&quot;&#x2F;&gt;</span><br><span class="line">  &lt;!--上传的总文件大小--&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;maxUploadSize&quot; value&#x3D;&quot;1048576&quot;&#x2F;&gt;</span><br><span class="line">  &lt;!--上传的单个文件大小--&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;maxUploadSizePerFile&quot; value&#x3D;&quot;1048576&quot;&#x2F;&gt;</span><br><span class="line">  &lt;!--内存中最大的数据量，超过这个数据量，数据就要开始往硬盘中写了--&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;maxInMemorySize&quot; value&#x3D;&quot;4096&quot;&#x2F;&gt;</span><br><span class="line">  &lt;!--临时目录，超过 maxInMemorySize 配置的大小后，数据开始往临时目录写，等全部上传完成后，再将数据合并到正式的文件上传目录--&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;uploadTempDir&quot; value&#x3D;&quot;file:&#x2F;&#x2F;&#x2F;E:\\tmp&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3-gson-同时存在jackson和gson-默认使用jackson"><a href="#3-gson-同时存在jackson和gson-默认使用jackson" class="headerlink" title="3.gson(同时存在jackson和gson,默认使用jackson)"></a>3.gson(同时存在jackson和gson,默认使用jackson)</h4><ol>
+<li>Goole推出的json解析器，SpringMVC提供了对应的自动化配置，只需要加入gson依赖。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.google.code.gson&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;gson&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.8.6&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li>gosn的自定义配置(全局自定义日期格式):<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;mvc:annotation-driven&gt;</span><br><span class="line">    &lt;mvc:message-converters&gt;</span><br><span class="line">        &lt;ref bean&#x3D;&quot;httpMessageConverter&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;mvc:message-converters&gt;</span><br><span class="line">&lt;&#x2F;mvc:annotation-driven&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;org.springframework.http.converter.json.GsonHttpMessageConverter&quot; id&#x3D;&quot;httpMessageConverter&quot;&gt;</span><br><span class="line">    &lt;property name&#x3D;&quot;gson&quot;&gt;</span><br><span class="line">        &lt;bean class&#x3D;&quot;com.google.gson.Gson&quot; factory-bean&#x3D;&quot;gsonBuilder&quot; factory-method&#x3D;&quot;create&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;property&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;com.google.gson.GsonBuilder&quot; id&#x3D;&quot;gsonBuilder&quot;&gt;</span><br><span class="line">    &lt;property name&#x3D;&quot;dateFormat&quot; value&#x3D;&quot;yyyy-MM-dd&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<h4 id="3-StandardServletMultipartResolver-上传文件的实现"><a href="#3-StandardServletMultipartResolver-上传文件的实现" class="headerlink" title="3.StandardServletMultipartResolver(上传文件的实现)"></a>3.StandardServletMultipartResolver(上传文件的实现)</h4><ol>
-<li>SpringMVC 的配置文件中，配置这个 Bean<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;org.springframework.web.multipart.support.StandardServletMultipartResolver&quot; id&#x3D;&quot;multipartResolver&quot;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure></li>
-<li>即使不需要限制文件上传大小，也需要在 web.xml 中配置 multipart-config<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;springmvc&lt;&#x2F;servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;&#x2F;servlet-class&gt;</span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;contextConfigLocation&lt;&#x2F;param-name&gt;</span><br><span class="line">        &lt;param-value&gt;classpath:spring-servlet.xml&lt;&#x2F;param-value&gt;</span><br><span class="line">    &lt;&#x2F;init-param&gt;</span><br><span class="line">    &lt;multipart-config&gt;</span><br><span class="line">        &lt;!--文件保存的临时目录，这个目录系统不会主动创建--&gt;</span><br><span class="line">        &lt;location&gt;E:\\temp&lt;&#x2F;location&gt;</span><br><span class="line">        &lt;!--上传的单个文件大小--&gt;</span><br><span class="line">        &lt;max-file-size&gt;1048576&lt;&#x2F;max-file-size&gt;</span><br><span class="line">        &lt;!--上传的总文件大小--&gt;</span><br><span class="line">        &lt;max-request-size&gt;1048576&lt;&#x2F;max-request-size&gt;</span><br><span class="line">        &lt;!--这个就是内存中保存的文件最大大小--&gt;</span><br><span class="line">        &lt;file-size-threshold&gt;4096&lt;&#x2F;file-size-threshold&gt;</span><br><span class="line">    &lt;&#x2F;multipart-config&gt;</span><br><span class="line">&lt;&#x2F;servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;springmvc&lt;&#x2F;servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;&#x2F;&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3-fastjson-SpringMVC中无自动化配置，手动配置HttpMessageConverter"><a href="#3-fastjson-SpringMVC中无自动化配置，手动配置HttpMessageConverter" class="headerlink" title="3.fastjson(SpringMVC中无自动化配置，手动配置HttpMessageConverter)"></a>3.fastjson(SpringMVC中无自动化配置，手动配置HttpMessageConverter)</h4><ol>
+<li>fastjson依赖<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;fastjson&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.2.60&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li>SpringMVC的配置文件中配置HttpMessageConverter:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;mvc:annotation-driven&gt;</span><br><span class="line">  &lt;mvc:message-converters&gt;</span><br><span class="line">      &lt;ref bean&#x3D;&quot;httpMessageConverter&quot;&#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;mvc:message-converters&gt;</span><br><span class="line">&lt;&#x2F;mvc:annotation-driven&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter&quot; id&#x3D;&quot;httpMessageConverter&quot;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;fastJsonConfig&quot;&gt;</span><br><span class="line">      &lt;bean class&#x3D;&quot;com.alibaba.fastjson.support.config.FastJsonConfig&quot;&gt;</span><br><span class="line">          &lt;property name&#x3D;&quot;dateFormat&quot; value&#x3D;&quot;yyyy-MM-dd&quot;&#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;bean&gt;</span><br><span class="line">  &lt;&#x2F;property&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>fastjson中文乱码解决<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;mvc:annotation-driven&gt;</span><br><span class="line">  &lt;mvc:message-converters&gt;</span><br><span class="line">      &lt;ref bean&#x3D;&quot;httpMessageConverter&quot;&#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;mvc:message-converters&gt;</span><br><span class="line">&lt;&#x2F;mvc:annotation-driven&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter&quot; id&#x3D;&quot;httpMessageConverter&quot;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;fastJsonConfig&quot;&gt;</span><br><span class="line">      &lt;bean class&#x3D;&quot;com.alibaba.fastjson.support.config.FastJsonConfig&quot;&gt;</span><br><span class="line">          &lt;property name&#x3D;&quot;dateFormat&quot; value&#x3D;&quot;yyyy-MM-dd&quot;&#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;bean&gt;</span><br><span class="line">  &lt;&#x2F;property&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;supportedMediaTypes&quot;&gt;</span><br><span class="line">      &lt;list&gt;</span><br><span class="line">          &lt;value&gt;application&#x2F;json;charset&#x3D;utf-8&lt;&#x2F;value&gt;</span><br><span class="line">      &lt;&#x2F;list&gt;</span><br><span class="line">  &lt;&#x2F;property&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<h4 id="4-踩坑记录"><a href="#4-踩坑记录" class="headerlink" title="4.踩坑记录"></a>4.踩坑记录</h4><ul>
-<li>SpringMVC 的配置文件中，配置CommonsMultipartResolver或者StandardServletMultipartResolver的时候必须指定id为multipartResolver</li>
-<li>StandardServletMultipartResolver实现文件上传，即使不需要限制文件上传大小，也需要在 web.xml 中配置 multipart-config</li>
-<li>生成文件夹目录的过程中，创建文件夹由于是多层文件夹mkdirs()不要写成mkdir()</li>
-<li>MultipartFile 取别名的时候一定要和上传文件的控件中的name名称一致，要不然获取不到文件抛空指针异常</li>
-</ul>
-<h4 id="5-多文件上传的实现-参考自江南一点雨的springmvc教程"><a href="#5-多文件上传的实现-参考自江南一点雨的springmvc教程" class="headerlink" title="5.多文件上传的实现(参考自江南一点雨的springmvc教程)"></a>5.多文件上传的实现(参考自江南一点雨的springmvc教程)</h4><ol>
-<li><p>key相同的文件</p>
-<ul>
-<li>用MultipartFile[]数组接收，上传文件用for循环处理，上传的控件加上multiple属性<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action&#x3D;&quot;&#x2F;upload2&quot; method&#x3D;&quot;post&quot; enctype&#x3D;&quot;multipart&#x2F;form-data&quot;&gt;</span><br><span class="line">  &lt;input type&#x3D;&quot;file&quot; name&#x3D;&quot;files&quot; multiple&gt;</span><br><span class="line">  &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;上传&quot;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
+</ol>
+<h4 id="5-json接收"><a href="#5-json接收" class="headerlink" title="5.json接收"></a>5.json接收</h4><ol>
+<li><p>在 Jsp/Servlet中，接收key/value形式的参数，一般是通过getParameter方法。如果客户端上传的是JSON数据，我们可以通过如下格式进行解析：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> @RequestMapping(&quot;&#x2F;addbook2&quot;)</span><br><span class="line"> @ResponseBody</span><br><span class="line"> public void addBook2(HttpServletRequest req) throws IOException &#123;</span><br><span class="line">     ObjectMapper om &#x3D; new ObjectMapper();</span><br><span class="line">     Book book &#x3D; om.readValue(req.getInputStream(), Book.class);</span><br><span class="line">     System.out.println(book); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>key不相同的文件</p>
-<ul>
-<li>定义多个不同的变量接收，分别进行文件重命名，创建文件的处理</li>
-</ul>
+<li><p>SpringMVC中通过注解将前端传来的json字符串转为对象，直接将注解加在方法参数的前面</p>
 </li>
+</ol>
+<h4 id="6-踩坑记录"><a href="#6-踩坑记录" class="headerlink" title="6.踩坑记录"></a>6.踩坑记录</h4><ol>
+<li>IDEA开发工具下SpringMVC使用jackson，依赖没有导入到编译环境，导致找不到对应的converter(点击Project Structure下的Project Settings中的Artifacts，将右侧新增的依赖双击加入到项目的编译环境中)</li>
+<li>不同的json解析器有不同的配置方式，fastjson在SpringMVC下必须手动配置httpMessageConverter</li>
+<li>全局配置不一定任何时候都适用，根据具体情况而定</li>
 </ol>
 
         </div>
@@ -211,7 +215,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a>, <a class="has-link-grey -link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="tag">文件上传</a>
+                    <a class="has-link-grey -link" href="/tags/SpringMVC/" rel="tag">SpringMVC</a>, <a class="has-link-grey -link" href="/tags/json/" rel="tag">json</a>
                 </div>
             </div>
         </div>
@@ -249,8 +253,8 @@
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/17/ioc/">
-                <span class="level-item">Spring IOC</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/19/upload/">
+                <span class="level-item">SpringMVC中文件上传和踩坑记录</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -304,7 +308,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            8
+                            9
                         </p>
                     </a>
                 </div>
@@ -316,7 +320,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            6
+                            5
                         </p>
                     </a>
                 </div>
@@ -328,7 +332,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            11
+                            12
                         </p>
                     </a>
                 </div>
@@ -394,23 +398,15 @@
                 <span class="level-item">Spring</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">3</span>
             </span>
-        </a><ul><li>
-        <a class="level is-marginless" href="/categories/Spring/SpringMVC/">
-            <span class="level-start">
-                <span class="level-item">SpringMVC</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li></ul></li><li>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/SpringMVC/">
             <span class="level-start">
                 <span class="level-item">SpringMVC</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E7%94%9F%E6%B4%BB/">
@@ -473,7 +469,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/SpringMVC/">
                         <span class="tag">SpringMVC</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -494,6 +490,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/hexo/">
                         <span class="tag">hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/json/">
+                        <span class="tag">json</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -537,10 +540,23 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T06:21:00.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/ioc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC中文件上传和踩坑记录</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T07:40:00.000Z">2020-02-19</time></div>
+                    <a href="/2020/02/19/json/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC中json处理和踩坑记录</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a> / <a class="has-link-grey -link" href="/categories/Spring/SpringMVC/">SpringMVC</a>
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T06:21:00.000Z">2020-02-19</time></div>
+                    <a href="/2020/02/19/upload/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC中文件上传和踩坑记录</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
                     </p>
                 </div>
             </div>
@@ -585,19 +601,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T06:28:35.000Z">2020-02-16</time></div>
-                    <a href="/2020/02/16/springmvc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC工作原理详解(转载自SnailClimb在GitHub的开源项目JavaGide)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -615,7 +618,7 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -630,7 +633,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 15px;">IOC</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 15px;">SpringMVC</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 15px;">IOC</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 20px;">SpringMVC</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
     </div>
 </div>
         
@@ -680,10 +683,23 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T06:21:00.000Z">2020-02-19</time></div>
-                    <a href="/2020/02/19/ioc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC中文件上传和踩坑记录</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T07:40:00.000Z">2020-02-19</time></div>
+                    <a href="/2020/02/19/json/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC中json处理和踩坑记录</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a> / <a class="has-link-grey -link" href="/categories/Spring/SpringMVC/">SpringMVC</a>
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T06:21:00.000Z">2020-02-19</time></div>
+                    <a href="/2020/02/19/upload/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC中文件上传和踩坑记录</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
                     </p>
                 </div>
             </div>
@@ -728,19 +744,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T06:28:35.000Z">2020-02-16</time></div>
-                    <a href="/2020/02/16/springmvc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC工作原理详解(转载自SnailClimb在GitHub的开源项目JavaGide)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -758,7 +761,7 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -773,7 +776,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 15px;">IOC</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 15px;">SpringMVC</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 15px;">IOC</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 20px;">SpringMVC</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a>
     </div>
 </div>
     
