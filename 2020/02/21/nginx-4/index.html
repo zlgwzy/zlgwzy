@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zlgwzy.gitee.io/images/og_image.png">
 <meta property="article:published_time" content="2020-02-21T06:00:00.000Z">
-<meta property="article:modified_time" content="2020-02-21T07:43:45.179Z">
+<meta property="article:modified_time" content="2020-02-21T09:43:05.357Z">
 <meta property="article:author" content="mili">
 <meta property="article:tag" content="nginx">
 <meta property="article:tag" content="反向代理">
@@ -148,7 +148,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 414 个字)
+                    4 分钟 读完 (大约 528 个字)
                 </span>
                 
                 
@@ -196,7 +196,16 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#进入解压过后的tomcat目录</span><br><span class="line">cd conf</span><br><span class="line">vi server.xml</span><br></pre></td></tr></table></figure>
 <p> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200221153004.jpg" alt="修改shutdown端口"><br> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200221153110.jpg" alt="修改http监听端口为8081"><br> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200221153303.jpg" alt="ajp协议反向代理端口修改为8019"></p>
 </li>
-<li><p>准备测试文件(方便验证确实跳转到不同的tomcat端口)</p>
+<li><p>准备测试文件(方便验证确实跳转到不同的tomcat端口)<br>&emsp;&emsp;在两个tomcat的webapps目录下分别创建8080和8081文件夹，并在文件夹里面分别创建index.html<br><img src="/images/QQ%E6%88%AA%E5%9B%BE20200221155541.jpg" alt><br><img src="/images/QQ%E6%88%AA%E5%9B%BE20200221155808.jpg" alt></p>
+</li>
+<li><p>配置nginx反向代理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd usr&#x2F;local&#x2F;nginx&#x2F;conf</span><br><span class="line">vi nginx.conf</span><br></pre></td></tr></table></figure>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20200221173506.jpg" alt></p>
+</li>
+<li><p>重新启动nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd usr&#x2F;local&#x2F;nginx&#x2F;sbin</span><br><span class="line">.&#x2F;nginx -s stop</span><br><span class="line">.&#x2F;nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证<br><img src="/images/QQ%E6%88%AA%E5%9B%BE20200221173959.jpg" alt="访问9001端口"><br><img src="/images/QQ%E6%88%AA%E5%9B%BE20200221174146.jpg" alt="访问9001端口下的8080目录"><br><img src="/images/QQ%E6%88%AA%E5%9B%BE20200221174220.jpg" alt="访问9001端口下的8081目录"></p>
 </li>
 </ul>
 
@@ -241,13 +250,6 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/02/21/nginx-6/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Nginx初级教程(六)Nginx配置实例-动静分离</span>
-            </a>
-        </div>
         
         
         <div class="level-end">
@@ -575,19 +577,6 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
-                    <a href="/2020/02/21/nginx-6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(六)Nginx配置实例-动静分离</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
                     <a href="/2020/02/21/nginx-4/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(四)Nginx配置实例-反向代理</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
@@ -602,6 +591,19 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
                     <a href="/2020/02/21/nginx-5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(五)Nginx配置实例-负载均衡</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
+                    <a href="/2020/02/21/nginx-6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(六)Nginx配置实例-动静分离</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
                     </p>
@@ -718,19 +720,6 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
-                    <a href="/2020/02/21/nginx-6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(六)Nginx配置实例-动静分离</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
                     <a href="/2020/02/21/nginx-4/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(四)Nginx配置实例-反向代理</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
@@ -745,6 +734,19 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
                     <a href="/2020/02/21/nginx-5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(五)Nginx配置实例-负载均衡</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
+                    <a href="/2020/02/21/nginx-6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(六)Nginx配置实例-动静分离</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
                     </p>
