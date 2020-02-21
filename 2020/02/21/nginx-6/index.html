@@ -10,14 +10,16 @@
 <title>Nginx初级教程(六)Nginx配置实例-动静分离 - mili&#39;s blog</title>
 
 
-    <meta property="og:type" content="article">
+    <meta name="description" content="1.什么是动静分离？&amp;emsp;&amp;emsp;nginx动静分离就是将动态请求和静态请求分开，一般来说是nginx处理静态请求，tomcat处理动态请求。 2.动静分离的一般实现 静态文件放到单独的服务器(主流方案) 动态和静态文件混合发布，通过nginx分开&amp;emsp;&amp;emsp;通过location指定不同的后缀名实现不同的请求转发。通过expires参数设置，可以使浏览器缓存过期时间，减少与服">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Nginx初级教程(六)Nginx配置实例-动静分离">
 <meta property="og:url" content="https://zlgwzy.gitee.io/2020/02/21/nginx-6/index.html">
 <meta property="og:site_name" content="mili&#39;s blog">
+<meta property="og:description" content="1.什么是动静分离？&amp;emsp;&amp;emsp;nginx动静分离就是将动态请求和静态请求分开，一般来说是nginx处理静态请求，tomcat处理动态请求。 2.动静分离的一般实现 静态文件放到单独的服务器(主流方案) 动态和静态文件混合发布，通过nginx分开&amp;emsp;&amp;emsp;通过location指定不同的后缀名实现不同的请求转发。通过expires参数设置，可以使浏览器缓存过期时间，减少与服">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zlgwzy.gitee.io/images/og_image.png">
-<meta property="article:published_time" content="2020-02-21T06:00:00.000Z">
-<meta property="article:modified_time" content="2020-02-21T06:26:51.133Z">
+<meta property="article:published_time" content="2020-02-21T14:20:00.000Z">
+<meta property="article:modified_time" content="2020-02-21T15:06:52.065Z">
 <meta property="article:author" content="mili">
 <meta property="article:tag" content="nginx">
 <meta property="article:tag" content="动静分离">
@@ -136,7 +138,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time>
+                <time class="level-item has-text-grey" datetime="2020-02-21T14:20:00.000Z">2020-02-21</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
@@ -146,7 +148,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    几秒 读完 (大约 0 个字)
+                    3 分钟 读完 (大约 496 个字)
                 </span>
                 
                 
@@ -159,7 +161,36 @@
             
         </h1>
         <div class="content">
-            
+            <h4 id="1-什么是动静分离？"><a href="#1-什么是动静分离？" class="headerlink" title="1.什么是动静分离？"></a>1.什么是动静分离？</h4><p>&emsp;&emsp;nginx动静分离就是将动态请求和静态请求分开，一般来说是nginx处理静态请求，tomcat处理动态请求。</p>
+<h4 id="2-动静分离的一般实现"><a href="#2-动静分离的一般实现" class="headerlink" title="2.动静分离的一般实现"></a>2.动静分离的一般实现</h4><ul>
+<li>静态文件放到单独的服务器(主流方案)</li>
+<li>动态和静态文件混合发布，通过nginx分开<br>&emsp;&emsp;通过location指定不同的后缀名实现不同的请求转发。通过expires参数设置，可以使浏览器缓存过期时间，减少与服务器之前的请求和流量。具体 Expires定义：是给一个资源设定一个过期时间，也就是说无需去服务端验证，直接通过浏览器自身确认是否过期即可，所以不会产生额外的流量。此种方法非常适合不经常变动的资源。（如果经常更新的文件， 不建议使用 Expires 来缓存），我这里设置2d，表示在这2天之内访问这个URL，发送一个请求，比对服务器该文件最后更新时间没有变化，则不会从服务器抓取，返回状态码 304，如果有修改，则直接从服务器重新下载，返回状态码 200。<a id="more"></a>
+
+</li>
+</ul>
+<h4 id="3-准备静态资源用于进行访问"><a href="#3-准备静态资源用于进行访问" class="headerlink" title="3.准备静态资源用于进行访问"></a>3.准备静态资源用于进行访问</h4><ul>
+<li><p>在根目录下创建data文件夹</p>
+</li>
+<li><p>data文件夹里面创建www和images文件夹</p>
+</li>
+<li><p>www里面存放index.html</p>
+</li>
+<li><p>images里面存放spider.jpg</p>
+<center>
+
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20200221224733.jpg" alt="创建文件夹"><br><img src="/images/QQ%E6%88%AA%E5%9B%BE20200221224815.jpg" alt="添加图片"><br><img src="/images/QQ%E6%88%AA%E5%9B%BE20200221224833.jpg" alt="添加html"></p>
+</center>
+
+</li>
+</ul>
+<h4 id="4-在nginx文件中进行配置"><a href="#4-在nginx文件中进行配置" class="headerlink" title="4.在nginx文件中进行配置"></a>4.在nginx文件中进行配置</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd usr&#x2F;local&#x2F;nginx&#x2F;conf</span><br><span class="line">vi nginx.conf</span><br></pre></td></tr></table></figure>
+ <center>
+
+<p> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200221225846.jpg" alt><br> </p></center><p></p>
+<h4 id="5-访问测试"><a href="#5-访问测试" class="headerlink" title="5.访问测试"></a>5.访问测试</h4> <center>
+
+<p> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200221230148.jpg" alt="配置了autoindex on，显示当前文件夹中的文件"><br> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200221230536.jpg" alt="配置了index index.html index.htm,默认会显示文件夹下面的这些文件"></p>
+ </center>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -204,8 +235,8 @@
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/21/nginx-4/">
-                <span class="level-item">Nginx初级教程(四)Nginx配置实例-反向代理</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/21/nginx-5/">
+                <span class="level-item">Nginx初级教程(五)Nginx配置实例-负载均衡</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -527,8 +558,21 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T14:20:00.000Z">2020-02-21</time></div>
                     <a href="/2020/02/21/nginx-6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(六)Nginx配置实例-动静分离</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T09:48:00.000Z">2020-02-21</time></div>
+                    <a href="/2020/02/21/nginx-5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(五)Nginx配置实例-负载均衡</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
                     </p>
@@ -542,19 +586,6 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
                     <a href="/2020/02/21/nginx-4/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(四)Nginx配置实例-反向代理</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
-                    <a href="/2020/02/21/nginx-5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(五)Nginx配置实例-负载均衡</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
                     </p>
@@ -670,8 +701,21 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T14:20:00.000Z">2020-02-21</time></div>
                     <a href="/2020/02/21/nginx-6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(六)Nginx配置实例-动静分离</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T09:48:00.000Z">2020-02-21</time></div>
+                    <a href="/2020/02/21/nginx-5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(五)Nginx配置实例-负载均衡</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
                     </p>
@@ -685,19 +729,6 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
                     <a href="/2020/02/21/nginx-4/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(四)Nginx配置实例-反向代理</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
-                    <a href="/2020/02/21/nginx-5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(五)Nginx配置实例-负载均衡</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
                     </p>
