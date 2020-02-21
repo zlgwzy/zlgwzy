@@ -153,7 +153,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 298 个字)
+                    几秒 读完 (大约 50 个字)
                 </span>
                 
                 
@@ -166,23 +166,29 @@
             
         </h1>
         <div class="content">
-            <h4 id="1-什么是Nginx？"><a href="#1-什么是Nginx？" class="headerlink" title="1.什么是Nginx？"></a>1.什么是Nginx？</h4><p>&emsp;&emsp;Nginx是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务。Nginx可以作为一个HTTP web服务器，反向代理作为负载均衡服务器，邮件代理服务器。</p>
-<ul>
-<li>正向代理进行上网等功能(通过配置客户端，通常是浏览器)</li>
-<li>反向代理(客户端无需配置，暴露反向代理服务器，隐藏真实服务器地址。请求发送到反向代理服务器，反向代理服务器选择目标服务器获取数据返回给客户端)</li>
-<li>负载均衡(通过集群增加服务器的数量，nginx将请求均衡分发到不同的服务器上，缓解传统单个服务器承受的高负载)</li>
-<li>动静分离(动态页面和静态页面由不同的服务器解析，nginx将请求分发到不同的动静态资源服务器)</li>
-</ul>
+            <ol>
+<li><p>进入nginx目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd usr&#x2F;local&#x2F;nginx&#x2F;sbin</span><br></pre></td></tr></table></figure>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20200221105020.jpg" alt=""></p>
+</li>
+<li><p>查看nginx版本号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;nginx -v</span><br></pre></td></tr></table></figure>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20200221104945.jpg" alt=""></p>
+</li>
+<li><p>启动nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;nginx</span><br></pre></td></tr></table></figure>
+<p><img src="/images/20200221112600.jpg" alt=""></p>
+</li>
+<li><p>关闭nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;nginx -s stop</span><br></pre></td></tr></table></figure>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20200221105626.jpg" alt=""></p>
+</li>
+<li><p>重新加载nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure></li>
+</ol>
+
         </div>
         
-        
-        <div class="level is-mobile" style="display: flex;justify-content: center;">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/20/nginx-2/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
