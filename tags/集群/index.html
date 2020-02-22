@@ -7,21 +7,16 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Nginx初级教程(三)Nginx中的配置文件 - mili&#39;s blog</title>
+<title>标签: 集群 - mili&#39;s blog</title>
 
 
-    <meta name="description" content="进入nginx下的conf目录(配置文件名为nginx.conf) 1cd usr&#x2F;local&#x2F;nginx&#x2F;conf          nginx.conf的组成 nginx配置文件的组成三部分   全局块&amp;emsp;&amp;emsp;从配置文件开始到events块之间的内容，主要会设置一些影响Nginx服务器整体运行的配置指令，主要包括配置运行Nginx服务器的用户（组">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Nginx初级教程(三)Nginx中的配置文件">
-<meta property="og:url" content="https://zlgwzy.gitee.io/2020/02/21/nginx-3/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="mili&#39;s blog">
+<meta property="og:url" content="https://zlgwzy.gitee.io/tags/%E9%9B%86%E7%BE%A4/index.html">
 <meta property="og:site_name" content="mili&#39;s blog">
-<meta property="og:description" content="进入nginx下的conf目录(配置文件名为nginx.conf) 1cd usr&#x2F;local&#x2F;nginx&#x2F;conf          nginx.conf的组成 nginx配置文件的组成三部分   全局块&amp;emsp;&amp;emsp;从配置文件开始到events块之间的内容，主要会设置一些影响Nginx服务器整体运行的配置指令，主要包括配置运行Nginx服务器的用户（组">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zlgwzy.gitee.io/images/og_image.png">
-<meta property="article:published_time" content="2020-02-21T05:02:00.000Z">
-<meta property="article:modified_time" content="2020-02-21T14:08:38.128Z">
 <meta property="article:author" content="mili">
-<meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zlgwzy.gitee.io/images/og_image.png">
 
@@ -81,7 +76,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/cat.ico" alt="Nginx初级教程(三)Nginx中的配置文件" height="28">
+                <img src="/images/cat.ico" alt="mili&#39;s blog" height="28">
             
             </a>
         </div>
@@ -130,14 +125,25 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">集群</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    
 <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-21T05:02:00.000Z">2020-02-21</time>
+                <time class="level-item has-text-grey" datetime="2020-02-22T04:20:00.000Z">2020-02-22</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
@@ -147,7 +153,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 分钟 读完 (大约 861 个字)
+                    5 分钟 读完 (大约 709 个字)
                 </span>
                 
                 
@@ -156,100 +162,34 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Nginx初级教程(三)Nginx中的配置文件
+                <a class="has-link-black-ter" href="/2020/02/22/nginx-7/">Nginx初级教程(七)Nginx配置实例-高可用的集群(主从模式)</a>
             
         </h1>
         <div class="content">
-            <ol>
-<li><p>进入nginx下的conf目录(配置文件名为nginx.conf)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd usr&#x2F;local&#x2F;nginx&#x2F;conf</span><br></pre></td></tr></table></figure>
-<center>
+            <h4 id="1-什么是高可用？"><a href="#1-什么是高可用？" class="headerlink" title="1.什么是高可用？"></a>1.什么是高可用？</h4><p> &emsp;&emsp;高可用HA（High Availability）是分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计减少系统不能提供服务的时间。假设系统一直能够提供服务，我们说系统的可用性是100%。如果系统每运行100个时间单位，会有1个时间单位无法提供服务，我们说系统的可用性是99%。</p>
+<h4 id="2-反向代理层实现高可用"><a href="#2-反向代理层实现高可用" class="headerlink" title="2.反向代理层实现高可用"></a>2.反向代理层实现高可用</h4>  <center>
 
-<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20200221130418.jpg" alt></p>
-</center>
-
-
-</li>
-</ol>
-<ol start="2">
-<li>nginx.conf的组成<ol>
-<li>nginx配置文件的组成三部分</li>
-</ol>
-<ul>
-<li>全局块<br>&emsp;&emsp;从配置文件开始到events块之间的内容，主要会设置一些影响Nginx服务器整体运行的配置指令，主要包括配置运行Nginx服务器的用户（组）、允许生成的worker process数，进程 PID 存放路径、日志存放路径和类型以 及配置文件的引入等。 <a id="more"></a></li>
-<li>events块<br>&emsp;&emsp; events块涉及的指令主要影响Nginx服务器与用户的网络连接，常用的设置包括是否开启对多work process下的网络连接进行序列化，是否允许同时接收多个网络连接，选取哪种事件驱动模型来处理连接请求，每个word process可以同时支持的最大连接数等。</li>
-<li>http块( 每个http块可以包括多个server块，而每个server块就相当于一个虚拟主机。)<br>&emsp;&emsp; 这算是 Nginx 服务器配置中最频繁的部分，代理、缓存和日志定义等绝大多数功能和第三方模块的配置都在这里。需要注意的是：http块也可以包括 http全局块、server 块。 </li>
-</ul>
-<ol>
-<li>http中全局块<br>&emsp;&emsp; http全局块配置的指令包括文件引入、MIME-TYPE 定义、日志自定义、连接超时时间、单链接请求数上限等。 </li>
-<li>http中server块(而每个server块也分为全局块，以及可以同时包含多个locaton 块。 )<ul>
-<li>全局块(最常见的配置是本虚拟机主机的监听配置和本虚拟主机的名称或IP配置。)</li>
-<li>location块( 一个server块可以配置多个location块。)<br>&emsp;&emsp; 这块的主要作用是基于Nginx服务器接收到的请求字符串（例如 server_name/uri-string），对虚拟主机名称 （也可以是IP 别名）之外的字符串（例如 前面的 /uri-string）进行匹配，对特定的请求进行处理。地址定向、数据缓 存和应答控制等功能，还有许多第三方模块的配置也在这里进行。 </li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-<h4 id="nginx-conf"><a href="#nginx-conf" class="headerlink" title="nginx.conf"></a>nginx.conf</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">#user  nobody;</span><br><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line">#error_log  logs&#x2F;error.log;</span><br><span class="line">#error_log  logs&#x2F;error.log  notice;</span><br><span class="line">#error_log  logs&#x2F;error.log  info;</span><br><span class="line"></span><br><span class="line">#pid        logs&#x2F;nginx.pid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application&#x2F;octet-stream;</span><br><span class="line"></span><br><span class="line">    #log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;</span><br><span class="line">    #                  &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;</span><br><span class="line">    #                  &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs&#x2F;access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    #tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">    #keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;</span><br><span class="line"></span><br><span class="line">        #access_log  logs&#x2F;host.access.log  main;</span><br><span class="line"></span><br><span class="line">        location &#x2F; &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        #error_page  404              &#x2F;404.html;</span><br><span class="line"></span><br><span class="line">        # redirect server error pages to the static page &#x2F;50x.html</span><br><span class="line">        #</span><br><span class="line">        error_page   500 502 503 504  &#x2F;50x.html;</span><br><span class="line">        location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">        #</span><br><span class="line">        #location ~ \.php$ &#123;</span><br><span class="line">        #    proxy_pass   http:&#x2F;&#x2F;127.0.0.1;</span><br><span class="line">        #&#125;</span><br><span class="line"></span><br><span class="line">        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">        #</span><br><span class="line">        #location ~ \.php$ &#123;</span><br><span class="line">        #    root           html;</span><br><span class="line">        #    fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">        #    fastcgi_index  index.php;</span><br><span class="line">        #    fastcgi_param  SCRIPT_FILENAME  &#x2F;scripts$fastcgi_script_name;</span><br><span class="line">        #    include        fastcgi_params;</span><br><span class="line">        #&#125;</span><br><span class="line"></span><br><span class="line">        # deny access to .htaccess files, if Apache&#39;s document root</span><br><span class="line">        # concurs with nginx&#39;s one</span><br><span class="line">        #</span><br><span class="line">        #location ~ &#x2F;\.ht &#123;</span><br><span class="line">        #    deny  all;</span><br><span class="line">        #&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    # another virtual host using mix of IP-, name-, and port-based configuration</span><br><span class="line">    #</span><br><span class="line">    #server &#123;</span><br><span class="line">    #    listen       8000;</span><br><span class="line">    #    listen       somename:8080;</span><br><span class="line">    #    server_name  somename  alias  another.alias;</span><br><span class="line"></span><br><span class="line">    #    location &#x2F; &#123;</span><br><span class="line">    #        root   html;</span><br><span class="line">    #        index  index.html index.htm;</span><br><span class="line">    #    &#125;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    # HTTPS server</span><br><span class="line">    #</span><br><span class="line">    #server &#123;</span><br><span class="line">    #    listen       443 ssl;</span><br><span class="line">    #    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    #    ssl_certificate      cert.pem;</span><br><span class="line">    #    ssl_certificate_key  cert.key;</span><br><span class="line"></span><br><span class="line">    #    ssl_session_cache    shared:SSL:1m;</span><br><span class="line">    #    ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">    #    ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">    #    ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">    #    location &#x2F; &#123;</span><br><span class="line">    #        root   html;</span><br><span class="line">    #        index  index.html index.htm;</span><br><span class="line">    #    &#125;</span><br><span class="line">    #&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>   <img src="/images/QQ%E6%88%AA%E5%9B%BE20200222123109.jpg" alt><br>  </p></center><p></p>
         </div>
         
-        <div class="level is-size-7 is-uppercase">
+        
+        <div class="level is-mobile" style="display: flex;justify-content: center;">
             <div class="level-start">
                 <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/nginx/" rel="tag">nginx</a>
+                <a class="button is-size-7 is-light" href="/2020/02/22/nginx-7/#more">阅读更多</a>
                 </div>
             </div>
         </div>
         
         
-        
     </div>
 </div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-        <div class="buttons is-centered">
-            
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>微信</span>
-    <div class="qrcode"><img src="/images/wechat_pay.png" alt="微信"></div>
-</a>
-
-                
-        </div>
-    </div>
-</div>
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/02/21/nginx-4/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Nginx初级教程(四)Nginx配置实例-反向代理</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/20/nginx-2/">
-                <span class="level-item">Nginx初级教程(二)Nginx常用的命令</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
 </div>
