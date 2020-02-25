@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zlgwzy.gitee.io/images/og_image.png">
 <meta property="article:published_time" content="2020-02-22T04:20:00.000Z">
-<meta property="article:modified_time" content="2020-02-22T15:03:36.480Z">
+<meta property="article:modified_time" content="2020-02-23T05:27:52.148Z">
 <meta property="article:author" content="mili">
 <meta property="article:tag" content="nginx">
 <meta property="article:tag" content="集群">
@@ -150,7 +150,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 709 个字)
+                    6 分钟 读完 (大约 827 个字)
                 </span>
                 
                 
@@ -187,10 +187,10 @@
 </li>
 <li><p>修改keepalived.conf(位于/etc/keepalived目录下)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#全局定义</span><br><span class="line">global_defs &#123;    </span><br><span class="line">    notification_email &#123;     #指定keepalived在发生切换时需要发送email的列表</span><br><span class="line">        mili_work@163.com</span><br><span class="line">        727910064@qq.com</span><br><span class="line">    &#125;    </span><br><span class="line">    notification_email_from mili_work@163.com   #指定发件人</span><br><span class="line">    smtp_server 192.168.200.1  #绑定smtp服务器地址    </span><br><span class="line">    smtp_connect_timeout 30    #smtp连接超时时间</span><br><span class="line">    router_id LVS_DEVEL        #访问到主机</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vrrp_script check_nginx &#123;</span><br><span class="line">    script &quot;&#x2F;etc&#x2F;keepalived&#x2F;check_nginx.sh&quot;         ##监控脚本</span><br><span class="line">    interval 2                                      ##时间间隔，2秒</span><br><span class="line">    weight 2                                        ##权重</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vrrp_instance VI_1 &#123;    </span><br><span class="line">    state BACKUP            #备份服务器上将 MASTER 改为 BACKUP       </span><br><span class="line">    interface enp0s3         #实例绑定的网卡 (ifconfig查看第一个参数) </span><br><span class="line">    virtual_router_id 51    #VRRP组名，主、备机的 virtual_router_id 必须相同    </span><br><span class="line">    priority 90             #主、备机取不同的优先级，主机值较大，备份机值较小     </span><br><span class="line">    advert_int 1            #主从负载均衡器同步检查时间间隔     </span><br><span class="line">    authentication &#123;        #主从服务器验证方式</span><br><span class="line">        auth_type PASS      </span><br><span class="line">        auth_pass 1111   </span><br><span class="line">    &#125;  </span><br><span class="line">    track_script &#123;</span><br><span class="line">            check_nginx        #监控脚本</span><br><span class="line">    &#125;</span><br><span class="line">    virtual_ipaddress &#123;         </span><br><span class="line">        192.168.0.222       #VRRP H 虚拟地址 需要和nginx的IP在同一网段，多个虚拟IP换行即可</span><br><span class="line">        192.168.0.33</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>准备nginx_check.sh脚本(放在/etc/keepalived目录下,keepalived检查进程是否存在进行主从切换，nginx检查脚本通过检查nginx进程是否存在来决定是否结束keepalived进程，从而进行了主从切换)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">A&#x3D;&#96;ps -C nginx –no-header |wc -l&#96;</span><br><span class="line">if [ $A -eq 0 ];then</span><br><span class="line">    &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx</span><br><span class="line">    sleep 2</span><br><span class="line">    if [ &#96;ps -C nginx --no-header |wc -l&#96; -eq 0 ];then</span><br><span class="line">        killall keepalived</span><br><span class="line">    fi</span><br><span class="line">    fi</span><br><span class="line">fi</span><br></pre></td></tr></table></figure></li>
+<li><p>准备check—_ngixn.sh脚本(放在/etc/keepalived目录下,keepalived检查进程是否存在进行主从切换，nginx检查脚本通过检查nginx进程是否存在来决定是否结束keepalived进程，从而进行了主从切换)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line"></span><br><span class="line">A&#x3D;&#96;ps -C nginx --no-header |wc -l&#96;        </span><br><span class="line"></span><br><span class="line">if [ $A -eq 0 ];then                            </span><br><span class="line"></span><br><span class="line">    &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx                #如果检测到nginx挂掉了就重启nginx</span><br><span class="line"></span><br><span class="line">    if [ &#96;ps -C nginx --no-header |wc -l&#96; -eq 0 ];then    #nginx重启失败，则停掉keepalived服务，进行VIP转移</span><br><span class="line"></span><br><span class="line">            killall keepalived                    </span><br><span class="line"></span><br><span class="line">    fi</span><br><span class="line"></span><br><span class="line">fi</span><br></pre></td></tr></table></figure></li>
 <li><p>启动两台服务器的nginx和keepalived</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#启动nginx</span><br><span class="line">cd usr&#x2F;local&#x2F;nginx&#x2F;sbin</span><br><span class="line">.&#x2F;nginx</span><br><span class="line">#启动keepalived</span><br><span class="line">systemctl start keepalived.service</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#启动nginx</span><br><span class="line">cd usr&#x2F;local&#x2F;nginx&#x2F;sbin</span><br><span class="line">.&#x2F;nginx</span><br><span class="line">#启动keepalived</span><br><span class="line">systemctl start keepalived.service</span><br><span class="line">#手动启动nginx检查脚本</span><br></pre></td></tr></table></figure>
 <center>
 
 <p> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200222203801.jpg" alt="检查keepalived进程，网卡名称要在keepalived.conf里面配置"><br> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200222212520.jpg" alt="虚拟IP已经能访问nginx"><br> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200222212946.jpg" alt="关闭主机nginx，通过check脚本结束了keepalived进程，进行了主从切换"></p>
@@ -199,6 +199,13 @@
 <center>
 
 <p><img src="/images/QQ%E6%88%AA%E5%9B%BE20200222220202.jpg" alt="主机IP地址绑定"><br><img src="/images/QQ%E6%88%AA%E5%9B%BE20200222220338.jpg" alt="丛机IP地址绑定"><br><img src="/images/QQ%E6%88%AA%E5%9B%BE20200222220521.jpg" alt="主机宕机，结束nginx进程,服务仍可用，从机IP绑定已切换"></p>
+</center>
+</li>
+<li><p>注意事项(check_nginx脚本的执行权限，shell脚本的文件格式)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#修改当前脚本的执行权限为可读可写可执行</span><br><span class="line">chmod 777 check_nginx.sh</span><br></pre></td></tr></table></figure>
+<center>
+
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20200223120016.jpg" alt="查看sehll脚本是dos还是unix格式，dos结尾&#39;^M$&#39;，unix结尾为&#39;$&#39;，set ff=unix更改格式"></p>
 </center></li>
 </ol>
 
@@ -243,6 +250,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/02/23/springmvc/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">SSM项目搭建图文教程</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -301,7 +315,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            16
+                            20
                         </p>
                     </a>
                 </div>
@@ -407,7 +421,7 @@
                 <span class="level-item">SpringMVC</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E7%94%9F%E6%B4%BB/">
@@ -470,7 +484,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/SpringMVC/">
                         <span class="tag">SpringMVC</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -590,60 +604,60 @@
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-24T09:08:00.000Z">2020-02-24</time></div>
+                    <a href="/2020/02/24/wlgl-3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">物流管理项目记录(三)搭建前端项目</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-24T03:24:00.000Z">2020-02-24</time></div>
+                    <a href="/2020/02/24/wlgl-2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">物流管理项目记录(二)SpringMVC整合shiro</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-23T07:33:00.000Z">2020-02-23</time></div>
+                    <a href="/2020/02/23/wlgl-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">物流管理项目记录(一)项目基本搭建</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-23T05:25:00.000Z">2020-02-23</time></div>
+                    <a href="/2020/02/23/springmvc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SSM项目搭建图文教程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-22T04:20:00.000Z">2020-02-22</time></div>
                     <a href="/2020/02/22/nginx-7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(七)Nginx配置实例-高可用的集群(主从模式)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T14:20:00.000Z">2020-02-21</time></div>
-                    <a href="/2020/02/21/nginx-6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(六)Nginx配置实例-动静分离</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T09:48:00.000Z">2020-02-21</time></div>
-                    <a href="/2020/02/21/nginx-5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(五)Nginx配置实例-负载均衡</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
-                    <a href="/2020/02/21/nginx-4/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(四)Nginx配置实例-反向代理</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T05:02:00.000Z">2020-02-21</time></div>
-                    <a href="/2020/02/21/nginx-3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(三)Nginx中的配置文件</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
                     </p>
@@ -668,7 +682,7 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">16</span>
+                    <span class="level-item tag">20</span>
                 </span>
             </a>
         </li>
@@ -683,7 +697,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 13.33px;">IOC</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 16.67px;">SpringMVC</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 13.33px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 13.33px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 13.33px;">IOC</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 20px;">SpringMVC</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 13.33px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 13.33px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
     </div>
 </div>
         
@@ -733,60 +747,60 @@
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-24T09:08:00.000Z">2020-02-24</time></div>
+                    <a href="/2020/02/24/wlgl-3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">物流管理项目记录(三)搭建前端项目</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-24T03:24:00.000Z">2020-02-24</time></div>
+                    <a href="/2020/02/24/wlgl-2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">物流管理项目记录(二)SpringMVC整合shiro</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-23T07:33:00.000Z">2020-02-23</time></div>
+                    <a href="/2020/02/23/wlgl-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">物流管理项目记录(一)项目基本搭建</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-23T05:25:00.000Z">2020-02-23</time></div>
+                    <a href="/2020/02/23/springmvc/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SSM项目搭建图文教程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringMVC/">SpringMVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-22T04:20:00.000Z">2020-02-22</time></div>
                     <a href="/2020/02/22/nginx-7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(七)Nginx配置实例-高可用的集群(主从模式)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T14:20:00.000Z">2020-02-21</time></div>
-                    <a href="/2020/02/21/nginx-6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(六)Nginx配置实例-动静分离</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T09:48:00.000Z">2020-02-21</time></div>
-                    <a href="/2020/02/21/nginx-5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(五)Nginx配置实例-负载均衡</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T06:00:00.000Z">2020-02-21</time></div>
-                    <a href="/2020/02/21/nginx-4/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(四)Nginx配置实例-反向代理</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-21T05:02:00.000Z">2020-02-21</time></div>
-                    <a href="/2020/02/21/nginx-3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Nginx初级教程(三)Nginx中的配置文件</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
                     </p>
@@ -811,7 +825,7 @@
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">16</span>
+                    <span class="level-item tag">20</span>
                 </span>
             </a>
         </li>
@@ -826,7 +840,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 13.33px;">IOC</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 16.67px;">SpringMVC</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 13.33px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 13.33px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 13.33px;">IOC</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 20px;">SpringMVC</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 13.33px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 10px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 13.33px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
     </div>
 </div>
     
