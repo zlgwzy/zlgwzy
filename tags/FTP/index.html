@@ -7,23 +7,16 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Nginx初级教程(一)Nginx概述与安装 - mili&#39;s blog</title>
+<title>标签: FTP - mili&#39;s blog</title>
 
 
-    <meta name="description" content="1.什么是Nginx？&amp;emsp;&amp;emsp;Nginx是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP&#x2F;POP3&#x2F;SMTP服务。Nginx可以作为一个HTTP web服务器，反向代理作为负载均衡服务器，邮件代理服务器。  正向代理进行上网等功能(通过配置客户端，通常是浏览器) 反向代理(客户端无需配置，暴露反向代理服务器，隐藏真实服务器地址。请求发送到反向代理服务器，反向代理服">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Nginx初级教程(一)Nginx概述与安装">
-<meta property="og:url" content="https://zlgwzy.gitee.io/2020/02/20/nginx-1/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="mili&#39;s blog">
+<meta property="og:url" content="https://zlgwzy.gitee.io/tags/FTP/index.html">
 <meta property="og:site_name" content="mili&#39;s blog">
-<meta property="og:description" content="1.什么是Nginx？&amp;emsp;&amp;emsp;Nginx是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP&#x2F;POP3&#x2F;SMTP服务。Nginx可以作为一个HTTP web服务器，反向代理作为负载均衡服务器，邮件代理服务器。  正向代理进行上网等功能(通过配置客户端，通常是浏览器) 反向代理(客户端无需配置，暴露反向代理服务器，隐藏真实服务器地址。请求发送到反向代理服务器，反向代理服">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zlgwzy.gitee.io/images/og_image.png">
-<meta property="article:published_time" content="2020-02-20T12:48:00.000Z">
-<meta property="article:modified_time" content="2020-02-22T08:39:11.326Z">
 <meta property="article:author" content="mili">
-<meta property="article:tag" content="nginx">
-<meta property="article:tag" content="反向代理">
-<meta property="article:tag" content="负载均衡">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zlgwzy.gitee.io/images/og_image.png">
 
@@ -83,7 +76,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/cat.ico" alt="Nginx初级教程(一)Nginx概述与安装" height="28">
+                <img src="/images/cat.ico" alt="mili&#39;s blog" height="28">
             
             </a>
         </div>
@@ -132,24 +125,35 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">FTP</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    
 <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-20T12:48:00.000Z">2020-02-20</time>
+                <time class="level-item has-text-grey" datetime="2020-02-25T09:39:00.000Z">2020-02-25</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
+                <a class="has-link-grey -link" href="/categories/TCP-IP/">TCP/IP</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 600 个字)
+                    10 分钟 读完 (大约 1498 个字)
                 </span>
                 
                 
@@ -158,112 +162,34 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Nginx初级教程(一)Nginx概述与安装
+                <a class="has-link-black-ter" href="/2020/02/25/ftp/">搭建FTP服务器记录</a>
             
         </h1>
         <div class="content">
-            <h4 id="1-什么是Nginx？"><a href="#1-什么是Nginx？" class="headerlink" title="1.什么是Nginx？"></a>1.什么是Nginx？</h4><p>&emsp;&emsp;Nginx是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务。Nginx可以作为一个HTTP web服务器，反向代理作为负载均衡服务器，邮件代理服务器。</p>
-<ul>
-<li>正向代理进行上网等功能(通过配置客户端，通常是浏览器)</li>
-<li>反向代理(客户端无需配置，暴露反向代理服务器，隐藏真实服务器地址。请求发送到反向代理服务器，反向代理服务器选择目标服务器获取数据返回给客户端)</li>
-<li>负载均衡(通过集群增加服务器的数量，nginx将请求均衡分发到不同的服务器上，缓解传统单个服务器承受的高负载)</li>
-<li>动静分离(动态页面和静态页面由不同的服务器解析，nginx将请求分发到不同的动静态资源服务器)</li>
-</ul>
-<a id="more"></a>
+            <h4 id="1-为了实现文件上传搭建FTP服务器，nginx做文件访问"><a href="#1-为了实现文件上传搭建FTP服务器，nginx做文件访问" class="headerlink" title="1.为了实现文件上传搭建FTP服务器，nginx做文件访问"></a>1.为了实现文件上传搭建FTP服务器，nginx做文件访问</h4><h4 id="2-centos7环境下安装vsftpd"><a href="#2-centos7环境下安装vsftpd" class="headerlink" title="2.centos7环境下安装vsftpd"></a>2.centos7环境下安装vsftpd</h4><p>&emsp;&emsp;vsftpd是linux下的一款小巧轻快，安全易用的FTP服务器软件，是一款在各个Linux发行版中最受推崇的FTP服务器软件。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y vsftpd</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-vsftpd配置文件所在目录"><a href="#3-vsftpd配置文件所在目录" class="headerlink" title="3.vsftpd配置文件所在目录"></a>3.vsftpd配置文件所在目录</h4> <center>
 
-<h4 id="2-安装Nginx-环境-阿里云服务器-centos7"><a href="#2-安装Nginx-环境-阿里云服务器-centos7" class="headerlink" title="2.安装Nginx(环境:阿里云服务器 centos7)"></a>2.安装Nginx(环境:阿里云服务器 centos7)</h4><ol>
-<li><p>下载相关的依赖</p>
-<ul>
-<li>gcc(Nginx使用c语言开发，编译依赖gcc环境)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc-c++</span><br></pre></td></tr></table></figure></li>
-<li>pcer和pcre-devel(Nginx的http模块使用pcre解析正则表达式)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y pcre pcre-devel</span><br></pre></td></tr></table></figure></li>
-<li>zlib和zlib-devel(Nginx使用zlib对http包进行解压)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y zlib zlib-devel</span><br></pre></td></tr></table></figure></li>
-<li>OpenSSL和OpenSSL-devel(Nginx支持https，在ssl协议上传输http)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y openssl openssl-devel</span><br></pre></td></tr></table></figure></li>
-<li>一键安装以上的四个依赖<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>进入Nginx官网获取当前稳定版本(Stable version)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;进入到centos下 &#x2F;usr&#x2F;src   通过wget下载(速度慢可以直接在本地下载上传到centos)</span><br><span class="line">wget -c https:&#x2F;&#x2F;nginx.org&#x2F;download&#x2F;nginx-1.16.1.tar.gz</span><br></pre></td></tr></table></figure></li>
-<li><p>当前目录下解压Nginx</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf nginx-1.16.1.tar.gz</span><br></pre></td></tr></table></figure></li>
-<li><p>进入到Nginx目录，编译安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd nginx-1.16.1</span><br><span class="line">.&#x2F;configure</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></li>
-<li><p>/usr/local下已创建nginx文件夹(Nginx启动脚本在sbin目录下)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd usr&#x2F;local&#x2F;nginx&#x2F;sbin</span><br><span class="line">&#x2F;&#x2F;启动Nginx</span><br><span class="line">.&#x2F;nginx</span><br></pre></td></tr></table></figure></li>
-<li><p>查看Nginx进程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep nginx</span><br></pre></td></tr></table></figure></li>
-<li><p>查看配置文件(默认监听服务器的80端口)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd usr&#x2F;local&#x2F;nginx&#x2F;conf</span><br><span class="line">查看nginx.conf</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>防火墙配置(centos7)</p>
-<pre><code>//查看防火墙列表
-firewall-cmd --list-all
-//添加端口
-sudo firewall-cmd --zone=public --add-port=80/tcp --permanent
-//更改防火墙需重新加载配置
-firewall-cmd --reload</code></pre></li>
-<li><p>访问服务器地址加端口(出现Nginx欢迎页面！)</p>
-</li>
-</ol>
-
+<p>   <img src="/images/QQ%E6%88%AA%E5%9B%BE20200225174730.jpg" alt><br> </p></center><p></p>
         </div>
         
-        <div class="level is-size-7 is-uppercase">
+        
+        <div class="level is-mobile" style="display: flex;justify-content: center;">
             <div class="level-start">
                 <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/nginx/" rel="tag">nginx</a>, <a class="has-link-grey -link" href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" rel="tag">反向代理</a>, <a class="has-link-grey -link" href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" rel="tag">负载均衡</a>
+                <a class="button is-size-7 is-light" href="/2020/02/25/ftp/#more">阅读更多</a>
                 </div>
             </div>
         </div>
         
         
-        
     </div>
 </div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-        <div class="buttons is-centered">
-            
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>微信</span>
-    <div class="qrcode"><img src="/images/wechat_pay.png" alt="微信"></div>
-</a>
-
-                
-        </div>
-    </div>
-</div>
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/02/20/nginx-2/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Nginx初级教程(二)Nginx常用的命令</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/19/json/">
-                <span class="level-item">SpringMVC中json处理和踩坑记录</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
 </div>
