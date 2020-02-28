@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zlgwzy.gitee.io/images/og_image.png">
 <meta property="article:published_time" content="2020-02-28T12:38:00.000Z">
-<meta property="article:modified_time" content="2020-02-28T13:43:15.903Z">
+<meta property="article:modified_time" content="2020-02-28T14:07:38.662Z">
 <meta property="article:author" content="mili">
 <meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary">
@@ -147,7 +147,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 279 个字)
+                    2 分钟 读完 (大约 371 个字)
                 </span>
                 
                 
@@ -176,7 +176,9 @@
  <center>
 
 <p>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200228213701.jpg" alt="map.keySet()获取到一个key为&quot;info&quot;，迭代器执行一次"><br>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200228214148.jpg" alt="将map增大到2组key，value，迭代器执行2次"><br> </p></center><p></p>
-<h4 id="3-全局数据预处理"><a href="#3-全局数据预处理" class="headerlink" title="3.全局数据预处理"></a>3.全局数据预处理</h4>
+<h4 id="3-全局数据预处理"><a href="#3-全局数据预处理" class="headerlink" title="3.全局数据预处理"></a>3.全局数据预处理</h4><p>当一个controller需要接受两个实体类的时候，若属性的名称出现重复，就会发生混淆。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class BookController &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    Book book;</span><br><span class="line">    @Autowired</span><br><span class="line">    Author author;</span><br><span class="line">    @PostMapping(&quot;&#x2F;book&quot;)</span><br><span class="line">    public String  book(@ModelAttribute(&quot;a&quot;) Book book,@ModelAttribute(&quot;b&quot;) Author author)&#123;</span><br><span class="line">        return book.toString() + &quot;&gt;&gt;&gt;&gt;&gt;&quot; +author.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;设置前缀    </span><br><span class="line">@InitBinder(&quot;a&quot;)</span><br><span class="line">public void init1(WebDataBinder webDataBinder)&#123;</span><br><span class="line">    webDataBinder.setFieldDefaultPrefix(&quot;a.&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@InitBinder(&quot;b&quot;)</span><br><span class="line">public void init2(WebDataBinder webDataBinder)&#123;</span><br><span class="line">    webDataBinder.setFieldDefaultPrefix(&quot;b.&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br> <center></center></p>
+<p>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200228220733.jpg" alt><br> </p>
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
