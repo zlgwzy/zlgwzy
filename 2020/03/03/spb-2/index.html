@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>SpringBoot智慧党建项目(二)项目搭建 - mili&#39;s blog</title>
+
+
+    <meta name="description" content="1.创建SpringBoot项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot智慧党建项目(二)项目搭建">
+<meta property="og:url" content="https://zlgwzy.gitee.io/2020/03/03/spb-2/index.html">
+<meta property="og:site_name" content="mili&#39;s blog">
+<meta property="og:description" content="1.创建SpringBoot项目">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zlgwzy.gitee.io/images/og_image.png">
+<meta property="article:published_time" content="2020-03-03T12:39:00.000Z">
+<meta property="article:modified_time" content="2020-03-04T04:40:26.569Z">
+<meta property="article:author" content="mili">
+<meta property="article:tag" content="SpringBoot">
+<meta property="article:tag" content="智慧党建">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zlgwzy.gitee.io/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/cat.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/cat.ico" alt="SpringBoot智慧党建项目(二)项目搭建" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="Welcome to my GitHub!" href="https://github.com/zlgwzy">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-03T12:39:00.000Z">2020-03-03</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 分钟 读完 (大约 905 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                SpringBoot智慧党建项目(二)项目搭建
+            
+        </h1>
+        <div class="content">
+            <h4 id="1-创建SpringBoot项目"><a href="#1-创建SpringBoot项目" class="headerlink" title="1.创建SpringBoot项目"></a>1.创建SpringBoot项目</h4><center>
+
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20200303204042.jpg" alt></p>
+</center>
+
+<a id="more"></a>
+
+<h4 id="2-引入依赖-redis和mq等依赖后续再添加"><a href="#2-引入依赖-redis和mq等依赖后续再添加" class="headerlink" title="2.引入依赖(redis和mq等依赖后续再添加)"></a>2.引入依赖(redis和mq等依赖后续再添加)</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;!--security--&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-security&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;!--web依赖--&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;!--mybatis--&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.mybatis.spring.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mybatis-spring-boot-starter&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;version&gt;2.1.1&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--数据库连接池--&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.alibaba&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;druid&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;version&gt;1.1.20&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;!--MyBatis分页插件--&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.github.pagehelper&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;pagehelper-spring-boot-starter&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;version&gt;1.2.10&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--数据库驱动--&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;scope&gt;runtime&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;&#x2F;dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-配置静态资源过滤和mapper扫描"><a href="#3-配置静态资源过滤和mapper扫描" class="headerlink" title="3.配置静态资源过滤和mapper扫描"></a>3.配置静态资源过滤和mapper扫描</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;注解加到main方法</span><br><span class="line">@MapperScan(&quot;com.zlgwzy.spb.mapper&quot;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;pom.xml文件配置静态资源过滤</span><br><span class="line">&lt;!--配置静态资源过滤，maven打包会过滤xml文件，这里将xml文件包含进来--&gt;</span><br><span class="line">&lt;resources&gt;</span><br><span class="line">    &lt;resource&gt;</span><br><span class="line">        &lt;directory&gt;src&#x2F;main&#x2F;java&lt;&#x2F;directory&gt;</span><br><span class="line">        &lt;includes&gt;</span><br><span class="line">            &lt;include&gt;**&#x2F;*.xml&lt;&#x2F;include&gt;</span><br><span class="line">        &lt;&#x2F;includes&gt;</span><br><span class="line">    &lt;&#x2F;resource&gt;</span><br><span class="line">    &lt;resource&gt;</span><br><span class="line">        &lt;directory&gt;src&#x2F;main&#x2F;resources&lt;&#x2F;directory&gt;</span><br><span class="line">    &lt;&#x2F;resource&gt;</span><br><span class="line">&lt;&#x2F;resources&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-配置数据库连接和项目端口-修改配置文件为yml"><a href="#3-配置数据库连接和项目端口-修改配置文件为yml" class="headerlink" title="3.配置数据库连接和项目端口(修改配置文件为yml)"></a>3.配置数据库连接和项目端口(修改配置文件为yml)</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">port: 8081</span><br><span class="line"></span><br><span class="line">spring:</span><br><span class="line">datasource:</span><br><span class="line">    url: jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;spb?useUnicode&#x3D;true&amp;characterEncoding&#x3D;utf-8&amp;serverTimezone&#x3D;Asia&#x2F;Shanghai</span><br><span class="line">    username: root</span><br><span class="line">    password: 123456</span><br><span class="line">    type: com.alibaba.druid.pool.DruidDataSource</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-实现初步的登录验证效果"><a href="#4-实现初步的登录验证效果" class="headerlink" title="4.实现初步的登录验证效果"></a>4.实现初步的登录验证效果</h4><ol>
+<li>创建数据库spb</li>
+<li>创建user表，增加一条测试数据</li>
+<li>使用MyBatisGenerator生成mapper接口，mapper.xml，实体类</li>
+<li>User实体类实现UserDetails接口，实现接口里面的方法，根据实际情况修改方法返回值</li>
+<li>创建UserService实现UserDetailsService(查询到的user可能为null，手动抛出异常)</li>
+<li>创建常用的dto(RespBean)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class UserService implements UserDetailsService &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException &#123;</span><br><span class="line">        User user &#x3D; userMapper.loadUserByUsername(username);</span><br><span class="line">        if (user&#x3D;&#x3D;null)&#123;</span><br><span class="line">            throw new UsernameNotFoundException(&quot;用户名不存在！&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        return user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class RespBean &#123;</span><br><span class="line">private Integer status;</span><br><span class="line">private String msg;</span><br><span class="line">private Object obj;</span><br><span class="line">public static RespBean build() &#123;</span><br><span class="line">    return new RespBean();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static RespBean ok(String msg)&#123;</span><br><span class="line">    return new RespBean(200, msg, null);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static RespBean ok(String msg,Object obj)&#123;</span><br><span class="line">    return new RespBean(200, msg, obj);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public static RespBean error(String msg)&#123;</span><br><span class="line">    return new RespBean(500, msg, null);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static RespBean error(String msg,Object obj)&#123;</span><br><span class="line">    return new RespBean(500, msg, obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="5-创建SecurityConfig，继承WebSecurityConfigurerAdapter"><a href="#5-创建SecurityConfig，继承WebSecurityConfigurerAdapter" class="headerlink" title="5.创建SecurityConfig，继承WebSecurityConfigurerAdapter"></a>5.创建SecurityConfig，继承WebSecurityConfigurerAdapter</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class SecurityConfig extends WebSecurityConfigurerAdapter &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    UserService userService;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    PasswordEncoder passwordEncoder() &#123;</span><br><span class="line">        return new BCryptPasswordEncoder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void configure(AuthenticationManagerBuilder auth) throws Exception &#123;</span><br><span class="line">        auth.userDetailsService(userService);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void configure(HttpSecurity http) throws Exception &#123;</span><br><span class="line">        http.authorizeRequests()</span><br><span class="line">                .anyRequest().authenticated()</span><br><span class="line">                .and()</span><br><span class="line">                .formLogin()</span><br><span class="line">                .usernameParameter(&quot;username&quot;)</span><br><span class="line">                .passwordParameter(&quot;password&quot;)</span><br><span class="line">                .loginProcessingUrl(&quot;&#x2F;doLogin&quot;)</span><br><span class="line">                .loginPage(&quot;&#x2F;login&quot;)</span><br><span class="line">                .successHandler(new AuthenticationSuccessHandler() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException &#123;</span><br><span class="line">                        response.setContentType(&quot;application&#x2F;json;charset&#x3D;utf-8&quot;);</span><br><span class="line">                        PrintWriter out &#x3D; response.getWriter();</span><br><span class="line">                        User user &#x3D; (User) authentication.getPrincipal();</span><br><span class="line">                        user.setPassword(null);</span><br><span class="line">                        RespBean ok &#x3D; RespBean.ok(&quot;登录成功！&quot;, user);</span><br><span class="line">                        String s &#x3D; new ObjectMapper().writeValueAsString(ok);</span><br><span class="line">                        out.write(s);</span><br><span class="line">                        out.flush();</span><br><span class="line">                        out.close();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                .failureHandler(new AuthenticationFailureHandler() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException &#123;</span><br><span class="line">                        response.setContentType(&quot;application&#x2F;json;charset&#x3D;utf-8&quot;);</span><br><span class="line">                        PrintWriter out &#x3D; response.getWriter();</span><br><span class="line">                        RespBean respBean &#x3D; RespBean.error(&quot;登录失败！&quot;);</span><br><span class="line">                        if (e instanceof LockedException) &#123;</span><br><span class="line">                            respBean.setMsg(&quot;账户被锁定，登录失败！&quot;);</span><br><span class="line">                        &#125; else if (e instanceof CredentialsExpiredException) &#123;</span><br><span class="line">                            respBean.setMsg(&quot;密码已过期，登录失败！&quot;);</span><br><span class="line">                        &#125; else if (e instanceof AccountExpiredException) &#123;</span><br><span class="line">                            respBean.setMsg(&quot;账户已过期，登录失败！&quot;);</span><br><span class="line">                        &#125; else if (e instanceof DisabledException) &#123;</span><br><span class="line">                            respBean.setMsg(&quot;账户已被锁定，登录失败！&quot;);</span><br><span class="line">                        &#125; else if (e instanceof BadCredentialsException) &#123;</span><br><span class="line">                            respBean.setMsg(&quot;用户名或密码输入错误，登录失败！&quot;);</span><br><span class="line">                        &#125;</span><br><span class="line">                        out.write(new ObjectMapper().writeValueAsString(respBean));</span><br><span class="line">                        out.flush();</span><br><span class="line">                        out.close();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                .permitAll()</span><br><span class="line">                .and()</span><br><span class="line">                .logout()</span><br><span class="line">                .logoutUrl(&quot;&#x2F;logout&quot;)</span><br><span class="line">                .logoutSuccessHandler(new LogoutSuccessHandler() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException &#123;</span><br><span class="line">                        response.setContentType(&quot;application&#x2F;json;charset&#x3D;utf-8&quot;);</span><br><span class="line">                        PrintWriter out &#x3D; response.getWriter();</span><br><span class="line">                        out.write(new  ObjectMapper().writeValueAsString(RespBean.ok(&quot;注销成功！&quot;)));</span><br><span class="line">                        out.flush();</span><br><span class="line">                        out.close();</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                .permitAll()</span><br><span class="line">                .and()</span><br><span class="line">                .csrf()</span><br><span class="line">                .disable();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ <center>
+
+<p>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200303211846.jpg" alt="未登录状态访问接口"><br>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200303211455.jpg" alt="postman测试登录接口"><br>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200303211724.jpg" alt="锁定账户重新测试"><br>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200303213026.jpg" alt="注销登录"><br> </p></center>)<p></p>
+<h4 id="6-给用户加上角色信息"><a href="#6-给用户加上角色信息" class="headerlink" title="6.给用户加上角色信息"></a>6.给用户加上角色信息</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;给User实体类加上角色属性</span><br><span class="line">private List&lt;Role&gt; roles;</span><br><span class="line">  </span><br><span class="line">&#x2F;**</span><br><span class="line"> * @return 获取用户具有角色</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Override</span><br><span class="line">public Collection&lt;? extends GrantedAuthority&gt; getAuthorities() &#123;</span><br><span class="line">    &#x2F;&#x2F;用户没有角色信息直接返回null</span><br><span class="line">    if (roles &#x3D;&#x3D; null)&#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;SimpleGrantedAuthority&gt; authorities &#x3D; new ArrayList&lt;&gt;(roles.size());</span><br><span class="line">    for (Role role : roles) &#123;</span><br><span class="line">        authorities.add(new SimpleGrantedAuthority(role.getName()));</span><br><span class="line">    &#125;</span><br><span class="line">    return authorities;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;获取用户角色</span><br><span class="line">&lt;select id&#x3D;&quot;getRolesByUserId&quot; resultType&#x3D;&quot;com.zlgwzy.spb.model.Role&quot;&gt;</span><br><span class="line">SELECT r.* FROM user_role ur,role r WHERE ur.rid&#x3D;r.id AND ur.uid&#x3D;#&#123;uid&#125;;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;赋值给roles属性</span><br><span class="line">user.setRoles(userMapper.getRolesByUserId(user.getId()));</span><br></pre></td></tr></table></figure>
+  <center>
+
+<p>   <img src="/images/QQ%E6%88%AA%E5%9B%BE20200304121445.jpg" alt><br>  </p></center><p></p>
+<h4 id="7-前端项目搭建"><a href="#7-前端项目搭建" class="headerlink" title="7.前端项目搭建"></a>7.前端项目搭建</h4><p>参考:<a href="https://zlgwzy.gitee.io/2020/02/24/wlgl-3/">物流管理项目记录(三)搭建前端项目</a></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a>, <a class="has-link-grey -link" href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" rel="tag">智慧党建</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat_pay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/03/04/spb-3/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">SpringBoot智慧党建项目(三)添加登录验证码</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/03/03/spb-1/">
+                <span class="level-item">SpringBoot智慧党建项目(一)项目简介</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/wechat_mili.png" alt="mili">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        mili
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        自律给我自由
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China ChengDu</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            32
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            8
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            30
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/zlgwzy" target="_blank" rel="noopener">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/zlgwzy">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="E-Mail" href="mailto:mili_work@163.com">
+                
+                <i class="fa fa-envelope"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Nginx/">
+            <span class="level-start">
+                <span class="level-item">Nginx</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Spring/">
+            <span class="level-start">
+                <span class="level-item">Spring</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/SpringBoot/">
+            <span class="level-start">
+                <span class="level-item">SpringBoot</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/SpringMVC/">
+            <span class="level-start">
+                <span class="level-item">SpringMVC</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/TCP-IP/">
+            <span class="level-start">
+                <span class="level-item">TCP/IP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E7%94%9F%E6%B4%BB/">
+            <span class="level-start">
+                <span class="level-item">生活</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E9%9D%A2%E8%AF%95/">
+            <span class="level-start">
+                <span class="level-item">面试</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AOP/">
+                        <span class="tag">AOP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Centos/">
+                        <span class="tag">Centos</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/FTP/">
+                        <span class="tag">FTP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Filter/">
+                        <span class="tag">Filter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hello-World/">
+                        <span class="tag">Hello World</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IOC/">
+                        <span class="tag">IOC</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Interceptor/">
+                        <span class="tag">Interceptor</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring/">
+                        <span class="tag">Spring</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringBoot/">
+                        <span class="tag">SpringBoot</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC/">
+                        <span class="tag">SpringMVC</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/TCP-IP/">
+                        <span class="tag">TCP/IP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Thymeleaf/">
+                        <span class="tag">Thymeleaf</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/equals/">
+                        <span class="tag">equals</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hashcode/">
+                        <span class="tag">hashcode</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hexo/">
+                        <span class="tag">hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/json/">
+                        <span class="tag">json</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/nginx/">
+                        <span class="tag">nginx</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/war/">
+                        <span class="tag">war</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/">
+                        <span class="tag">主从模式</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/">
+                        <span class="tag">动静分离</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/">
+                        <span class="tag">反向代理</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
+                        <span class="tag">文件上传</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/">
+                        <span class="tag">日常计划</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/">
+                        <span class="tag">智慧党建</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
+                        <span class="tag">负载均衡</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%9B%86%E7%BE%A4/">
+                        <span class="tag">集群</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/">
+                        <span class="tag">面试</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/">
+                        <span class="tag">项目部署</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/">
+                        <span class="tag">高可用模式</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T04:39:00.000Z">2020-03-04</time></div>
+                    <a href="/2020/03/04/spb-3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringBoot智慧党建项目(三)添加登录验证码</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-03T12:39:00.000Z">2020-03-03</time></div>
+                    <a href="/2020/03/03/spb-2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringBoot智慧党建项目(二)项目搭建</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-03T07:46:00.000Z">2020-03-03</time></div>
+                    <a href="/2020/03/03/spb-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringBoot智慧党建项目(一)项目简介</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-02T09:40:00.000Z">2020-03-02</time></div>
+                    <a href="/2020/03/02/war/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringBoot打包成war的注意事项</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-01T04:17:00.000Z">2020-03-01</time></div>
+                    <a href="/2020/03/01/linux-new/" class="title has-link-black-ter is-size-6 has-text-weight-normal">从零开始部署一个Java项目(基于centos7环境)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12.5px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 17.5px;">SpringMVC</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12.5px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12.5px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 15px;">智慧党建</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12.5px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://www.javaboy.org/" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">江南一点雨</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.javaboy.org</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T04:39:00.000Z">2020-03-04</time></div>
+                    <a href="/2020/03/04/spb-3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringBoot智慧党建项目(三)添加登录验证码</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-03T12:39:00.000Z">2020-03-03</time></div>
+                    <a href="/2020/03/03/spb-2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringBoot智慧党建项目(二)项目搭建</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-03T07:46:00.000Z">2020-03-03</time></div>
+                    <a href="/2020/03/03/spb-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringBoot智慧党建项目(一)项目简介</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-02T09:40:00.000Z">2020-03-02</time></div>
+                    <a href="/2020/03/02/war/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringBoot打包成war的注意事项</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-01T04:17:00.000Z">2020-03-01</time></div>
+                    <a href="/2020/03/01/linux-new/" class="title has-link-black-ter is-size-6 has-text-weight-normal">从零开始部署一个Java项目(基于centos7环境)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12.5px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 17.5px;">SpringMVC</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12.5px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12.5px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 15px;">智慧党建</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12.5px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="http://www.javaboy.org/" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">江南一点雨</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.javaboy.org</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer" style="background-color: rgba(14,185,118,1);width: 100%;height: 100%;">
+    <div class="container" style="display: flex;flex-direction: column;align-items: center;font-size: 14px;">
+        <div>
+            <span id="timeDate" style="color:white;">载入天数...</span><span id="times"
+            style="color:white;">载入时分秒...</span>
+        <script>
+            var now = new Date();
+
+            function createtime() {
+                var grt = new Date("02/02/2020 20:20:20");
+                now.setTime(now.getTime() + 250);
+                days = (now - grt) / 1000 / 60 / 60 / 24;
+                dnum = Math.floor(days);
+                hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+                hnum = Math.floor(hours);
+                if (String(hnum).length == 1) {
+                    hnum = "0" + hnum;
+                }
+                minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                mnum = Math.floor(minutes);
+                if (String(mnum).length == 1) {
+                    mnum = "0" + mnum;
+                }
+                seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                snum = Math.round(seconds);
+                if (String(snum).length == 1) {
+                    snum = "0" + snum;
+                }
+                document.getElementById("timeDate").innerHTML = "博客已运行 " + dnum + " 天 ";
+                document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+            }
+            setInterval("createtime()", 250);
+        </script>
+        </div>
+
+        <div>
+            <span style="color:white;">
+                Copyright © 2020 mili
+            </span>
+        </div>
+
+        <div>
+            <span style="color:white;font-size: 16px;">
+                哪有什么天生如此<i class="fas fa-heart throb" style="color:#d43f57"></i>只是我们天天坚持
+            </span>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://zlgwzy.gitee.io',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
