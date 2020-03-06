@@ -143,6 +143,61 @@
                 <span class="level-item has-text-grey">
                     
                     
+                    几秒 读完 (大约 79 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/06/Configuration/">Spring中的@Component和@Configuration</a>
+            
+        </h1>
+        <div class="content">
+            <p>在开发中配置类用@Configuration注解标注，注册到spring容器当中<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Component</span><br><span class="line">public @interface Configuration &#123;</span><br><span class="line">    @AliasFor(</span><br><span class="line">        annotation &#x3D; Component.class</span><br><span class="line">    )</span><br><span class="line">    String value() default &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    boolean proxyBeanMethods() default true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>@Component</li>
+<li>@Configuration</li>
+<li>@Controller</li>
+<li>@Repository</li>
+<li>@Service</li>
+</ol>
+<p>后面4个注解其实就是@Component，但是@Configuration略有不同，多了如下属性：</p>
+<p>boolean proxyBeanMethods() default true</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-06T09:31:00.000Z">2020-03-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
                     5 分钟 读完 (大约 692 个字)
                 </span>
                 
@@ -647,65 +702,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-28T09:44:00.000Z">2020-02-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    1 分钟 读完 (大约 193 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/28/springboot-resource/">SpringBoot中的静态资源访问</a>
-            
-        </h1>
-        <div class="content">
-            <h4 id="1-SSM中的配置"><a href="#1-SSM中的配置" class="headerlink" title="1.SSM中的配置"></a>1.SSM中的配置</h4><p>在SSM环境中，我们在springmv配置文件中配置不拦截静态资源有xml配置和java配置两种方法。</p>
-<ol>
-<li><p>xml配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;mvc:resources mapping&#x3D;&quot;&#x2F;**&quot; location&#x3D;&quot;&#x2F;&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>java配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@ComponentScan(basePackages &#x3D; &quot;com.zlgwzy.demo&quot;)</span><br><span class="line">public class WebConfig implements WebMvcConfigurer &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void addResourceHandlers(ResourceHandlerRegistry registry) &#123;</span><br><span class="line">        registry.addResourceHandler(&quot;&#x2F;**&quot;).addResourceLocations(&quot;&#x2F;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol>
-        </div>
-        
-        
-        <div class="level is-mobile" style="display: flex;justify-content: center;">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/28/springboot-resource/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -774,7 +770,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            35
+                            36
                         </p>
                     </a>
                 </div>
@@ -880,7 +876,7 @@
                 <span class="level-item">Spring</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/SpringBoot/">
@@ -994,7 +990,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Spring/">
                         <span class="tag">Spring</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1157,6 +1153,19 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T09:31:00.000Z">2020-03-06</time></div>
+                    <a href="/2020/03/06/Configuration/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring中的@Component和@Configuration</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T09:31:00.000Z">2020-03-06</time></div>
                     <a href="/2020/03/06/annotation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring中的@Documented、@Retention、@Target</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
@@ -1204,19 +1213,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-03T12:39:00.000Z">2020-03-03</time></div>
-                    <a href="/2020/03/03/spb-2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringBoot智慧党建项目(二)项目搭建</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1234,7 +1230,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -1311,6 +1307,19 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T09:31:00.000Z">2020-03-06</time></div>
+                    <a href="/2020/03/06/Configuration/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring中的@Component和@Configuration</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T09:31:00.000Z">2020-03-06</time></div>
                     <a href="/2020/03/06/annotation/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring中的@Documented、@Retention、@Target</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
@@ -1358,19 +1367,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-03T12:39:00.000Z">2020-03-03</time></div>
-                    <a href="/2020/03/03/spb-2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringBoot智慧党建项目(二)项目搭建</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1388,7 +1384,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
