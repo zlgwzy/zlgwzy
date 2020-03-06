@@ -7,16 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: Filter - mili&#39;s blog</title>
+<title>Spring中的@Documented、@Retention、@Target - mili&#39;s blog</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="mili&#39;s blog">
-<meta property="og:url" content="https://zlgwzy.gitee.io/tags/Filter/index.html">
+    <meta name="description" content="在阅读spring源码的过程当中，发现注解的上面都会出现@Documented、@Retention、@Target这3个注解，于是记录一下这3个注解到底是用来干嘛的。 1.@Documented源码： 12345@Documented@Retention(RetentionPolicy.RUNTIME)@Target(ElementType.ANNOTATION_TYPE)public @int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring中的@Documented、@Retention、@Target">
+<meta property="og:url" content="https://zlgwzy.gitee.io/2020/03/06/annotation/index.html">
 <meta property="og:site_name" content="mili&#39;s blog">
+<meta property="og:description" content="在阅读spring源码的过程当中，发现注解的上面都会出现@Documented、@Retention、@Target这3个注解，于是记录一下这3个注解到底是用来干嘛的。 1.@Documented源码： 12345@Documented@Retention(RetentionPolicy.RUNTIME)@Target(ElementType.ANNOTATION_TYPE)public @int">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zlgwzy.gitee.io/images/og_image.png">
+<meta property="article:published_time" content="2020-03-06T09:31:00.000Z">
+<meta property="article:modified_time" content="2020-03-06T12:35:49.867Z">
 <meta property="article:author" content="mili">
+<meta property="article:tag" content="Spring">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zlgwzy.gitee.io/images/og_image.png">
 
@@ -76,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/cat.ico" alt="mili&#39;s blog" height="28">
+                <img src="/images/cat.ico" alt="Spring中的@Documented、@Retention、@Target" height="28">
             
             </a>
         </div>
@@ -125,35 +130,24 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Filter</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-27T04:31:00.000Z">2020-02-27</time>
+                <time class="level-item has-text-grey" datetime="2020-03-06T09:31:00.000Z">2020-03-06</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 681 个字)
+                    5 分钟 读完 (大约 692 个字)
                 </span>
                 
                 
@@ -162,23 +156,36 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/02/27/springboot-filter/">SpringBoot实现过滤器</a>
+                Spring中的@Documented、@Retention、@Target
             
         </h1>
         <div class="content">
-            <h4 id="1-什么是过滤器？"><a href="#1-什么是过滤器？" class="headerlink" title="1.什么是过滤器？"></a>1.什么是过滤器？</h4><p>Filter过滤器主要是用来过滤用户请求，它允许我们对用户请求进行前置处理和后置处理。实现 URL 级别的权限控制、过滤非法请求等等。Filter过滤器是面向切面编程——AOP思想的的具体实现。</p>
-<p>Filter依赖Servlet容器，属于Servlet规范的一部分。</p>
-<h4 id="2-如何实现自定义Filter？"><a href="#2-如何实现自定义Filter？" class="headerlink" title="2.如何实现自定义Filter？"></a>2.如何实现自定义Filter？</h4><p>实现自定义Filter，只需实现javax.servlet.Filter接口，然后重写里面的3个方法。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;Filter所在的包</span><br><span class="line">package javax.servlet;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">public interface Filter &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;初始化Filter后执行的操作</span><br><span class="line">    default void init(FilterConfig filterConfig) throws ServletException &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;对请求进行过滤操作</span><br><span class="line">    void doFilter(ServletRequest var1, ServletResponse var2, FilterChain var3) throws IOException, ServletException;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;销毁过滤器后执行的操作，主要对用户资源进行回收</span><br><span class="line">    default void destroy() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+            <p>在阅读spring源码的过程当中，发现注解的上面都会出现@Documented、@Retention、@Target这3个注解，于是记录一下这3个注解到底是用来干嘛的。</p>
+<h4 id="1-Documented"><a href="#1-Documented" class="headerlink" title="1.@Documented"></a>1.@Documented</h4><p>源码：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Documented</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Target(ElementType.ANNOTATION_TYPE)</span><br><span class="line">public @interface Documented &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>@Documented是一个标记注解，没有成员，表明这个注解应该被javadoc工具记录，默认情况下javadoc之类的工具是不会记录注解的。如果声明注解时指定了@Documented,则它会被 javadoc之类的工具处理, 因此注解类型信息也会被包括在生成的文档中。</p>
+<a id="more"></a>
+
+<h4 id="2-Retention搭配枚举类型RetentionPolicy"><a href="#2-Retention搭配枚举类型RetentionPolicy" class="headerlink" title="2.@Retention搭配枚举类型RetentionPolicy"></a>2.@Retention搭配枚举类型RetentionPolicy</h4><p>源码：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">    @Documented</span><br><span class="line">    @Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">    @Target(ElementType.ANNOTATION_TYPE)</span><br><span class="line">    public @interface Retention &#123;</span><br><span class="line">        &#x2F;**</span><br><span class="line">        * Returns the retention policy.</span><br><span class="line">        * @return the retention policy</span><br><span class="line">        *&#x2F;</span><br><span class="line">        RetentionPolicy value();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public enum RetentionPolicy &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 注解保留在.java文件</span><br><span class="line">     * Annotations are to be discarded by the compiler.</span><br><span class="line">     *&#x2F;</span><br><span class="line">    SOURCE,</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 注解保留在.class文件中，jvm加载class时忽略，默认情况</span><br><span class="line">     * Annotations are to be recorded in the class file by the compiler</span><br><span class="line">     * but need not be retained by the VM at run time.  This is the default</span><br><span class="line">     * behavior.</span><br><span class="line">     *&#x2F;</span><br><span class="line">    CLASS,</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 注解在jvm加载class后依然存在</span><br><span class="line">     * Annotations are to be recorded in the class file by the compiler and</span><br><span class="line">     * retained by the VM at run time, so they may be read reflectively.</span><br><span class="line">     *</span><br><span class="line">     * @see java.lang.reflect.AnnotatedElement</span><br><span class="line">     *&#x2F;</span><br><span class="line">    RUNTIME</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>生命周期长度 SOURCE &lt; CLASS &lt; RUNTIME<br>注解生命周期的选择：</p>
+<ol>
+<li>运行时动态获取注解信息，RUNTIME</li>
+<li>编译成字节码前的预处理，CLASS</li>
+<li>检查性的操作，SOURCE</li>
+</ol>
+<h4 id="3-Target搭配枚举类型ElementType"><a href="#3-Target搭配枚举类型ElementType" class="headerlink" title="3.@Target搭配枚举类型ElementType"></a>3.@Target搭配枚举类型ElementType</h4><p>标注了该注解可能出现的的位置<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">    @Documented</span><br><span class="line">    @Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">    @Target(ElementType.ANNOTATION_TYPE)</span><br><span class="line">    public @interface Target &#123;</span><br><span class="line">        &#x2F;**</span><br><span class="line">        * Returns an array of the kinds of elements an annotation type</span><br><span class="line">        * can be applied to.</span><br><span class="line">        * @return an array of the kinds of elements an annotation type</span><br><span class="line">        * can be applied to</span><br><span class="line">        *&#x2F;</span><br><span class="line">        ElementType[] value();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public enum ElementType &#123;</span><br><span class="line">    &#x2F;** 类, 接口 (包括注解类型), 或枚举类型声明 *&#x2F;</span><br><span class="line">    TYPE,</span><br><span class="line"></span><br><span class="line">    &#x2F;** 字段声明 (包括枚举常量) *&#x2F;</span><br><span class="line">    FIELD,</span><br><span class="line"></span><br><span class="line">    &#x2F;** 方法声明 *&#x2F;</span><br><span class="line">    METHOD,</span><br><span class="line"></span><br><span class="line">    &#x2F;** 方法参数声明 *&#x2F;</span><br><span class="line">    PARAMETER,</span><br><span class="line"></span><br><span class="line">    &#x2F;** 构造函数声明 *&#x2F;</span><br><span class="line">    CONSTRUCTOR,</span><br><span class="line"></span><br><span class="line">    &#x2F;** 局部变量声明 *&#x2F;</span><br><span class="line">    LOCAL_VARIABLE,</span><br><span class="line"></span><br><span class="line">    &#x2F;** 注解类型声明 *&#x2F;</span><br><span class="line">    ANNOTATION_TYPE,</span><br><span class="line"></span><br><span class="line">    &#x2F;** 包声明 *&#x2F;</span><br><span class="line">    PACKAGE,</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">    * 类型参数声明</span><br><span class="line">    *</span><br><span class="line">    * @since 1.8</span><br><span class="line">    *&#x2F;</span><br><span class="line">    TYPE_PARAMETER,</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">    * 使用类型</span><br><span class="line">    *</span><br><span class="line">    * @since 1.8</span><br><span class="line">    *&#x2F;</span><br><span class="line">    TYPE_USE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>举一个例子:<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Component</span><br><span class="line">public @interface Controller &#123;</span><br><span class="line">    @AliasFor(</span><br><span class="line">        annotation &#x3D; Component.class</span><br><span class="line">    )</span><br><span class="line">    String value() default &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>@Controller可能出现在类，接口，注解，枚举</p>
+<p>合理使用这三个注解，在自定义主注解的时候可以声明是否被javadoc工具记录，注解应该保留到声明周期的哪个阶段。到底是做的检查工作，还是编译成字节码前的预处理操作，还是需要在运行时获取注解的具体信息。</p>
+<p>补充：<br>@Indexed<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Indexed</span><br><span class="line">public @interface Component &#123;</span><br><span class="line">    String value() default &quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>被@Component注解标识的类，接口，注解，枚举会被预编译，加快启动速度</p>
+
         </div>
         
-        
-        <div class="level is-mobile" style="display: flex;justify-content: center;">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/27/springboot-filter/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Spring/" rel="tag">Spring</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -186,9 +193,40 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat_pay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/03/06/ioc/">
+                <span class="level-item">SpringBoot中注册bean的方法</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
