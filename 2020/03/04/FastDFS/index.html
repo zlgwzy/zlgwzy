@@ -7,16 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: TCP/IP - mili&#39;s blog</title>
+<title>FastDFS 构建分布式文件管理系统 - mili&#39;s blog</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="mili&#39;s blog">
-<meta property="og:url" content="https://zlgwzy.gitee.io/tags/TCP-IP/index.html">
+    <meta name="description" content="参考文章：松哥手把手教你用 FastDFS 构建分布式文件管理系统 1.作为一款分布式文件管理系统，FastDFS 主要包括四个方面的功能： 文件存储 文件同步 文件上传 文件下载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FastDFS 构建分布式文件管理系统">
+<meta property="og:url" content="https://zlgwzy.gitee.io/2020/03/04/FastDFS/index.html">
 <meta property="og:site_name" content="mili&#39;s blog">
+<meta property="og:description" content="参考文章：松哥手把手教你用 FastDFS 构建分布式文件管理系统 1.作为一款分布式文件管理系统，FastDFS 主要包括四个方面的功能： 文件存储 文件同步 文件上传 文件下载">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zlgwzy.gitee.io/images/og_image.png">
+<meta property="article:published_time" content="2020-03-04T07:50:00.000Z">
+<meta property="article:modified_time" content="2020-03-04T09:03:10.405Z">
 <meta property="article:author" content="mili">
+<meta property="article:tag" content="FastDFS">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zlgwzy.gitee.io/images/og_image.png">
 
@@ -76,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/cat.ico" alt="mili&#39;s blog" height="28">
+                <img src="/images/cat.ico" alt="FastDFS 构建分布式文件管理系统" height="28">
             
             </a>
         </div>
@@ -125,35 +130,24 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">TCP/IP</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-25T09:39:00.000Z">2020-02-25</time>
+                <time class="level-item has-text-grey" datetime="2020-03-04T07:50:00.000Z">2020-03-04</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/TCP-IP/">TCP/IP</a>
+                <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1498 个字)
+                    5 分钟 读完 (大约 788 个字)
                 </span>
                 
                 
@@ -162,24 +156,57 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/02/25/ftp/">搭建FTP服务器记录</a>
+                FastDFS 构建分布式文件管理系统
             
         </h1>
         <div class="content">
-            <h4 id="1-为了实现文件上传搭建FTP服务器，nginx做文件访问"><a href="#1-为了实现文件上传搭建FTP服务器，nginx做文件访问" class="headerlink" title="1.为了实现文件上传搭建FTP服务器，nginx做文件访问"></a>1.为了实现文件上传搭建FTP服务器，nginx做文件访问</h4><h4 id="2-centos7环境下安装vsftpd"><a href="#2-centos7环境下安装vsftpd" class="headerlink" title="2.centos7环境下安装vsftpd"></a>2.centos7环境下安装vsftpd</h4><p>&emsp;&emsp;vsftpd是linux下的一款小巧轻快，安全易用的FTP服务器软件，是一款在各个Linux发行版中最受推崇的FTP服务器软件。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y vsftpd</span><br></pre></td></tr></table></figure></p>
-<h4 id="3-vsftpd配置文件所在目录"><a href="#3-vsftpd配置文件所在目录" class="headerlink" title="3.vsftpd配置文件所在目录"></a>3.vsftpd配置文件所在目录</h4> <center>
+            <p>参考文章：<a href="https://mp.weixin.qq.com/s?__biz=MzI1NDY0MTkzNQ==&mid=2247487963&idx=1&sn=8db3c404f1135454f11c5cb1296309c0&chksm=e9c343bbdeb4caad9d2402605188c1cdfd6621563be6fdc49db8c86e32d83919c06cadf957b3&mpshare=1&scene=23&srcid=&sharer_sharetime=1583034646211&sharer_shareid=afd104e0e2c5b0b8d55e7cc6e0ab65c3#rd">松哥手把手教你用 FastDFS 构建分布式文件管理系统</a></p>
+<h4 id="1-作为一款分布式文件管理系统，FastDFS-主要包括四个方面的功能："><a href="#1-作为一款分布式文件管理系统，FastDFS-主要包括四个方面的功能：" class="headerlink" title="1.作为一款分布式文件管理系统，FastDFS 主要包括四个方面的功能："></a>1.作为一款分布式文件管理系统，FastDFS 主要包括四个方面的功能：</h4><ul>
+<li>文件存储</li>
+<li>文件同步</li>
+<li>文件上传</li>
+<li>文件下载</li>
+</ul>
+<a id="more"></a>
 
-<p>   <img src="/images/QQ%E6%88%AA%E5%9B%BE20200227121926.jpg" alt><br> </p></center><p></p>
+<h4 id="2-FastDFS系统架构图"><a href="#2-FastDFS系统架构图" class="headerlink" title="2.FastDFS系统架构图"></a>2.FastDFS系统架构图</h4> <center>
+
+<p>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200304155408.jpg" alt><br>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200304155438.jpg" alt="摘自参考文章"><br> </p></center><p></p>
+<h4 id="3-FastDFS安装"><a href="#3-FastDFS安装" class="headerlink" title="3.FastDFS安装"></a>3.FastDFS安装</h4><p>测试环境，Tracker和Storage安装在同一台服务器上。<br>FastDFS采用C语言开发，需要gcc环境<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc-c++</span><br></pre></td></tr></table></figure><br>FastDFS依赖libevent库和libfastcommon库(官方提供)<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install libevent</span><br></pre></td></tr></table></figure><br> <a href="https://github.com/happyfish100/libfastcommon/archive/V1.0.43.tar.gz">libfastcommon下载地址</a></p>
+<p>拷贝libfastcommon拷贝至/usr/local/ 目录下，解压，编译然后安装<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local</span><br><span class="line">tar -zxvf V1.0.43.tar.gz</span><br><span class="line">cd libfastcommon-1.0.43&#x2F;</span><br><span class="line">.&#x2F;make.sh</span><br><span class="line">.&#x2F;make.sh install</span><br></pre></td></tr></table></figure></p>
+<p>Tracker和Storage是相同的安装包，所以下载一次即可<br> <a href="https://github.com/happyfish100/fastdfs/archive/V6.06.tar.gz">Tracker下载地址</a><br>拷贝Tracker拷贝至/usr/local/ 目录下，解压，编译然后安装<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local</span><br><span class="line">tar -zxvf V6.06.tar.gz</span><br><span class="line">cd fastdfs-6.06&#x2F;</span><br><span class="line">.&#x2F;make.sh</span><br><span class="line">.&#x2F;make.sh install</span><br></pre></td></tr></table></figure><br>安装成功后，执行如下命令，将安装目录内conf目录下的配置文件拷贝到/etc/fdfs目录下：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd conf&#x2F;</span><br><span class="line">cp .&#x2F;* &#x2F;etc&#x2F;fdfs&#x2F;</span><br></pre></td></tr></table></figure><br> <center></center></p>
+<p>   <img src="/images/QQ%E6%88%AA%E5%9B%BE20200304161024.jpg" alt="conf目录下的所有文件拷贝到了/etc/fdfs目录下"><br> </p>
+<p>修改tracker.conf，配置启动端口和元数据保存目录(端口根据实际情况修改)<br> <center></center></p>
+<p>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200304161404.jpg" alt="创建元数据保存目录home/mili/fastdfs"><br>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200304161642.jpg" alt="修改元数据保存目录"><br> </p>
+<p>启动tracker<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;bin&#x2F;fdfs_trackerd &#x2F;etc&#x2F;fdfs&#x2F;tracker.conf start</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;查看端口占用</span><br><span class="line">netstat -tunlp</span><br></pre></td></tr></table></figure></p>
+<h4 id="4-Storage安装"><a href="#4-Storage安装" class="headerlink" title="4.Storage安装"></a>4.Storage安装</h4><p>Storage本身的安装，也和Tracker一致，执行命令也都一样Tracker和Storage安装在同一台服务器上，所以不用再执行安装命令了(相当于安装Tracker时已经安装了Storage了)</p>
+<p>进入到 /etc/fdfs目录下，配置Storage：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd etc&#x2F;fdfs</span><br></pre></td></tr></table></figure><br> <center></center></p>
+<p>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200304163538.jpg" alt="元数据保存目录"><br>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200304163609.jpg" alt="store路径"><br>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200304163723.jpg" alt="tracker服务器地址"><br> </p>
+<p>启动Storage<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;bin&#x2F;fdfs_storaged &#x2F;etc&#x2F;fdfs&#x2F;storage.conf start</span><br></pre></td></tr></table></figure></p>
+<h4 id="5-Storage下安装fastdfs-nginx-module"><a href="#5-Storage下安装fastdfs-nginx-module" class="headerlink" title="5.Storage下安装fastdfs-nginx-module"></a>5.Storage下安装fastdfs-nginx-module</h4><ol>
+<li>nginx安装<br>参考文章：<a href="https://zlgwzy.gitee.io/2020/02/20/nginx-1/">Nginx初级教程(一)Nginx概述与安装</a></li>
+<li>Storage下安装fastdfs-nginx-module<br><a href="https://github.com/happyfish100/fastdfs-nginx-module/archive/V1.22.tar.gz">fastdfs-nginx-module下载地址</a><br>拷贝fastdfs-nginx-module拷贝至/usr/local/ 目录下，解压<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;local</span><br><span class="line">tar -zxvf V1.22.tar.gz</span><br></pre></td></tr></table></figure>
+然后将/usr/local/fastdfs-nginx-module-1.22/src/mod_fastdfs.conf文件拷贝到/etc/fdfs/目录下，并修改该文件的内容：<center>
+
+</center></li>
+</ol>
+<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20200304165202.jpg" alt="修改tracker_server"><br><img src="/images/QQ%E6%88%AA%E5%9B%BE20200304165255.jpg" alt><br><img src="/images/QQ%E6%88%AA%E5%9B%BE20200304165343.jpg" alt="修改store_path0"></p>
+
+
+<p>接下来，回到nginx安装文件的解压目录中，执行如下命令，重新配置编译安装：<br> <center></center></p>
+<p>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200304170242.jpg" alt="nginx安装文件解压目录"><br> <br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;configure --add-module&#x3D;&#x2F;usr&#x2F;local&#x2F;fastdfs-nginx-module-1.22&#x2F;src</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+
         </div>
         
-        
-        <div class="level is-mobile" style="display: flex;justify-content: center;">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/25/ftp/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/FastDFS/" rel="tag">FastDFS</a>
                 </div>
             </div>
         </div>
+        
         
         
     </div>
@@ -187,9 +214,40 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat_pay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/03/04/spb-3/">
+                <span class="level-item">SpringBoot智慧党建项目(三)添加登录验证码</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -237,7 +295,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            33
                         </p>
                     </a>
                 </div>
@@ -322,6 +380,14 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Nginx/">
             <span class="level-start">
                 <span class="level-item">Nginx</span>
@@ -352,14 +418,6 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">7</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/TCP-IP/">
-            <span class="level-start">
-                <span class="level-item">TCP/IP</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E7%94%9F%E6%B4%BB/">
@@ -408,6 +466,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/FTP/">
                         <span class="tag">FTP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/FastDFS/">
+                        <span class="tag">FastDFS</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -465,13 +530,6 @@
                     <a class="tags has-addons" href="/tags/SpringMVC/">
                         <span class="tag">SpringMVC</span>
                         <span class="tag is-grey">7</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/TCP-IP/">
-                        <span class="tag">TCP/IP</span>
-                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -619,6 +677,19 @@
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T07:50:00.000Z">2020-03-04</time></div>
+                    <a href="/2020/03/04/FastDFS/" class="title has-link-black-ter is-size-6 has-text-weight-normal">FastDFS 构建分布式文件管理系统</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T04:39:00.000Z">2020-03-04</time></div>
                     <a href="/2020/03/04/spb-3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringBoot智慧党建项目(三)添加登录验证码</a>
                     <p class="is-size-7 is-uppercase">
@@ -667,19 +738,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-01T04:17:00.000Z">2020-03-01</time></div>
-                    <a href="/2020/03/01/linux-new/" class="title has-link-black-ter is-size-6 has-text-weight-normal">从零开始部署一个Java项目(基于centos7环境)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -697,7 +755,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -723,7 +781,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12.5px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 17.5px;">SpringMVC</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12.5px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12.5px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 15px;">智慧党建</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12.5px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12.5px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 17.5px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12.5px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12.5px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 15px;">智慧党建</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12.5px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
     </div>
 </div>
         
@@ -773,6 +831,19 @@
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T07:50:00.000Z">2020-03-04</time></div>
+                    <a href="/2020/03/04/FastDFS/" class="title has-link-black-ter is-size-6 has-text-weight-normal">FastDFS 构建分布式文件管理系统</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-04T04:39:00.000Z">2020-03-04</time></div>
                     <a href="/2020/03/04/spb-3/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringBoot智慧党建项目(三)添加登录验证码</a>
                     <p class="is-size-7 is-uppercase">
@@ -821,19 +892,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-01T04:17:00.000Z">2020-03-01</time></div>
-                    <a href="/2020/03/01/linux-new/" class="title has-link-black-ter is-size-6 has-text-weight-normal">从零开始部署一个Java项目(基于centos7环境)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -851,7 +909,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -877,7 +935,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12.5px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 17.5px;">SpringMVC</a> <a href="/tags/TCP-IP/" style="font-size: 10px;">TCP/IP</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12.5px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12.5px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 15px;">智慧党建</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12.5px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12.5px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 17.5px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12.5px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12.5px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 15px;">智慧党建</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12.5px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
     </div>
 </div>
     
