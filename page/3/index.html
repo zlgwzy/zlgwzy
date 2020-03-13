@@ -133,6 +133,65 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-28T09:44:00.000Z">2020-02-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 193 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/28/springboot-resource/">SpringBoot中的静态资源访问</a>
+            
+        </h1>
+        <div class="content">
+            <h4 id="1-SSM中的配置"><a href="#1-SSM中的配置" class="headerlink" title="1.SSM中的配置"></a>1.SSM中的配置</h4><p>在SSM环境中，我们在springmv配置文件中配置不拦截静态资源有xml配置和java配置两种方法。</p>
+<ol>
+<li><p>xml配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;mvc:resources mapping&#x3D;&quot;&#x2F;**&quot; location&#x3D;&quot;&#x2F;&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>java配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@ComponentScan(basePackages &#x3D; &quot;com.zlgwzy.demo&quot;)</span><br><span class="line">public class WebConfig implements WebMvcConfigurer &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void addResourceHandlers(ResourceHandlerRegistry registry) &#123;</span><br><span class="line">        registry.addResourceHandler(&quot;&#x2F;**&quot;).addResourceLocations(&quot;&#x2F;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol>
+        </div>
+        
+        
+        <div class="level is-mobile" style="display: flex;justify-content: center;">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/02/28/springboot-resource/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-02-27T15:20:00.000Z">2020-02-27</time>
                 
                 <div class="level-item">
@@ -621,62 +680,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-22T04:20:00.000Z">2020-02-22</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Nginx/">Nginx</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 827 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/22/nginx-7/">Nginx初级教程(七)Nginx配置实例-高可用的集群(主从模式)</a>
-            
-        </h1>
-        <div class="content">
-            <h4 id="1-什么是高可用？"><a href="#1-什么是高可用？" class="headerlink" title="1.什么是高可用？"></a>1.什么是高可用？</h4><p> &emsp;&emsp;高可用HA（High Availability）是分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计减少系统不能提供服务的时间。假设系统一直能够提供服务，我们说系统的可用性是100%。如果系统每运行100个时间单位，会有1个时间单位无法提供服务，我们说系统的可用性是99%。</p>
-<h4 id="2-反向代理层实现高可用"><a href="#2-反向代理层实现高可用" class="headerlink" title="2.反向代理层实现高可用"></a>2.反向代理层实现高可用</h4>  <center>
-
-<p>   <img src="/images/QQ%E6%88%AA%E5%9B%BE20200222123109.jpg" alt><br>  </p></center><p></p>
-        </div>
-        
-        
-        <div class="level is-mobile" style="display: flex;justify-content: center;">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/02/22/nginx-7/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -747,7 +750,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            45
+                            46
                         </p>
                     </a>
                 </div>
@@ -759,7 +762,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            10
+                            11
                         </p>
                     </a>
                 </div>
@@ -870,6 +873,14 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">7</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">
+            <span class="level-start">
+                <span class="level-item">文章推荐</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E6%9C%80%E8%BF%91%E8%AE%A1%E5%88%92/">
@@ -1032,7 +1043,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/java/">
                         <span class="tag">java</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1173,6 +1184,19 @@
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T06:06:00.000Z">2020-03-13</time></div>
+                    <a href="/2020/03/13/enum/" class="title has-link-black-ter is-size-6 has-text-weight-normal">文章推荐-Java枚举类学习到进阶</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">文章推荐</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-12T09:25:00.000Z">2020-03-12</time></div>
                     <a href="/2020/03/12/observer/" class="title has-link-black-ter is-size-6 has-text-weight-normal">观察者模式</a>
                     <p class="is-size-7 is-uppercase">
@@ -1221,19 +1245,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-11T05:56:00.000Z">2020-03-11</time></div>
-                    <a href="/2020/03/11/fk/" class="title has-link-black-ter is-size-6 has-text-weight-normal">编程规范-禁止使用外键和级联</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/">编程规范</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1251,7 +1262,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">18</span>
+                    <span class="level-item tag">19</span>
                 </span>
             </a>
         </li>
@@ -1277,7 +1288,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 16px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 18px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 16px;">java</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 18px;">nginx</a> <a href="/tags/plan/" style="font-size: 10px;">plan</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 14px;">智慧党建</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 14px;">编程规范</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 11.67px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 18.33px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 18.33px;">nginx</a> <a href="/tags/plan/" style="font-size: 10px;">plan</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 11.67px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 11.67px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 13.33px;">智慧党建</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 13.33px;">编程规范</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 11.67px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
     </div>
 </div>
         
@@ -1327,6 +1338,19 @@
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T06:06:00.000Z">2020-03-13</time></div>
+                    <a href="/2020/03/13/enum/" class="title has-link-black-ter is-size-6 has-text-weight-normal">文章推荐-Java枚举类学习到进阶</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">文章推荐</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-12T09:25:00.000Z">2020-03-12</time></div>
                     <a href="/2020/03/12/observer/" class="title has-link-black-ter is-size-6 has-text-weight-normal">观察者模式</a>
                     <p class="is-size-7 is-uppercase">
@@ -1375,19 +1399,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-11T05:56:00.000Z">2020-03-11</time></div>
-                    <a href="/2020/03/11/fk/" class="title has-link-black-ter is-size-6 has-text-weight-normal">编程规范-禁止使用外键和级联</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/">编程规范</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1405,7 +1416,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">18</span>
+                    <span class="level-item tag">19</span>
                 </span>
             </a>
         </li>
@@ -1431,7 +1442,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 16px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 18px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 16px;">java</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 18px;">nginx</a> <a href="/tags/plan/" style="font-size: 10px;">plan</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 14px;">智慧党建</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 14px;">编程规范</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 11.67px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 18.33px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 18.33px;">nginx</a> <a href="/tags/plan/" style="font-size: 10px;">plan</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 11.67px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 11.67px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 13.33px;">智慧党建</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 13.33px;">编程规范</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 11.67px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
     </div>
 </div>
     
