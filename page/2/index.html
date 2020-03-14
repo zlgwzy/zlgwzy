@@ -143,7 +143,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    几秒 读完 (大约 79 个字)
+                    5 分钟 读完 (大约 692 个字)
                 </span>
                 
                 
@@ -152,23 +152,22 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/06/Configuration/">Spring中的@Component和@Configuration</a>
+                <a class="has-link-black-ter" href="/2020/03/06/annotation/">Spring中的@Documented、@Retention、@Target</a>
             
         </h1>
         <div class="content">
-            <p>在开发中配置类用@Configuration注解标注，注册到spring容器当中<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Component</span><br><span class="line">public @interface Configuration &#123;</span><br><span class="line">    @AliasFor(</span><br><span class="line">        annotation &#x3D; Component.class</span><br><span class="line">    )</span><br><span class="line">    String value() default &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    boolean proxyBeanMethods() default true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>@Component</li>
-<li>@Configuration</li>
-<li>@Controller</li>
-<li>@Repository</li>
-<li>@Service</li>
-</ol>
-<p>后面4个注解其实就是@Component，但是@Configuration略有不同，多了如下属性：</p>
-<p>boolean proxyBeanMethods() default true</p>
-
+            <p>在阅读spring源码的过程当中，发现注解的上面都会出现@Documented、@Retention、@Target这3个注解，于是记录一下这3个注解到底是用来干嘛的。</p>
+<h4 id="1-Documented"><a href="#1-Documented" class="headerlink" title="1.@Documented"></a>1.@Documented</h4><p>源码：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Documented</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Target(ElementType.ANNOTATION_TYPE)</span><br><span class="line">public @interface Documented &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>@Documented是一个标记注解，没有成员，表明这个注解应该被javadoc工具记录，默认情况下javadoc之类的工具是不会记录注解的。如果声明注解时指定了@Documented,则它会被 javadoc之类的工具处理, 因此注解类型信息也会被包括在生成的文档中。</p>
         </div>
         
+        
+        <div class="level is-mobile" style="display: flex;justify-content: center;">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/03/06/annotation/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -198,7 +197,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 692 个字)
+                    几秒 读完 (大约 79 个字)
                 </span>
                 
                 
@@ -207,22 +206,23 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/06/annotation/">Spring中的@Documented、@Retention、@Target</a>
+                <a class="has-link-black-ter" href="/2020/03/06/Configuration/">Spring中的@Component和@Configuration</a>
             
         </h1>
         <div class="content">
-            <p>在阅读spring源码的过程当中，发现注解的上面都会出现@Documented、@Retention、@Target这3个注解，于是记录一下这3个注解到底是用来干嘛的。</p>
-<h4 id="1-Documented"><a href="#1-Documented" class="headerlink" title="1.@Documented"></a>1.@Documented</h4><p>源码：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Documented</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Target(ElementType.ANNOTATION_TYPE)</span><br><span class="line">public @interface Documented &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>@Documented是一个标记注解，没有成员，表明这个注解应该被javadoc工具记录，默认情况下javadoc之类的工具是不会记录注解的。如果声明注解时指定了@Documented,则它会被 javadoc之类的工具处理, 因此注解类型信息也会被包括在生成的文档中。</p>
+            <p>在开发中配置类用@Configuration注解标注，注册到spring容器当中<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Target(&#123;ElementType.TYPE&#125;)</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Documented</span><br><span class="line">@Component</span><br><span class="line">public @interface Configuration &#123;</span><br><span class="line">    @AliasFor(</span><br><span class="line">        annotation &#x3D; Component.class</span><br><span class="line">    )</span><br><span class="line">    String value() default &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    boolean proxyBeanMethods() default true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>@Component</li>
+<li>@Configuration</li>
+<li>@Controller</li>
+<li>@Repository</li>
+<li>@Service</li>
+</ol>
+<p>后面4个注解其实就是@Component，但是@Configuration略有不同，多了如下属性：</p>
+<p>boolean proxyBeanMethods() default true</p>
+
         </div>
         
-        
-        <div class="level is-mobile" style="display: flex;justify-content: center;">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/03/06/annotation/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
