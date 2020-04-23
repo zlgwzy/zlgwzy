@@ -133,6 +133,58 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-11T05:56:00.000Z">2020-03-11</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/">编程规范</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 279 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/11/fk/">编程规范-禁止使用外键和级联</a>
+            
+        </h1>
+        <div class="content">
+            <p>最近看了阿里的Java开发手册有许多启发，合理的编码规范可以提升系统稳定性。</p>
+<p>在我曾经遇到的业务场景中，有两张表menu和menu_role。menu保存用户可访问的菜单，menu_role保存对应的用户可访问的菜单。对菜单执行删除操作的时候，如果menu_role中还有对应的用户关联就会提醒删除失败。在menu和menu_role中使用了外键约束RESTRICT，如果想要删除父表的记录时，而在子表中有关联该父表的记录，则不允许删除父表中的记录。</p>
+<p>看到阿里的规范中规定不得使用外键，外键概念必须在应用层解决。随着大数据时代的到来，单机低并发已经无法支持我们的应用系统，外键和级联不适合分布式和高并发集群，详细原因如下：</p>
+<center>
+
+<p> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200311135622.jpg" alt="截取自阿里巴巴Java开发手册"></p>
+</center>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-11T05:07:00.000Z">2020-03-11</time>
                 
                 <div class="level-item">
@@ -622,62 +674,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-03T12:39:00.000Z">2020-03-03</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 905 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/03/spb-2/">SpringBoot智慧党建项目(二)项目搭建</a>
-            
-        </h1>
-        <div class="content">
-            <h4 id="1-创建SpringBoot项目"><a href="#1-创建SpringBoot项目" class="headerlink" title="1.创建SpringBoot项目"></a>1.创建SpringBoot项目</h4><center>
-
-<p><img src="/images/QQ%E6%88%AA%E5%9B%BE20200303204042.jpg" alt></p>
-</center>
-        </div>
-        
-        
-        <div class="level is-mobile" style="display: flex;justify-content: center;">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/03/03/spb-2/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -696,9 +692,9 @@
             
             <li><a class="pagination-link has-text-black-ter" href="/page/3/">3</a></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/4/">4</a></li>
+            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/5/">5</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/6/">6</a></li>
             
         </ul>
     </nav>
@@ -748,7 +744,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            50
+                            51
                         </p>
                     </a>
                 </div>
@@ -760,7 +756,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            13
+                            14
                         </p>
                     </a>
                 </div>
@@ -772,7 +768,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            36
+                            37
                         </p>
                     </a>
                 </div>
@@ -887,6 +883,14 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">7</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Vue/">
+            <span class="level-start">
+                <span class="level-item">Vue</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">
@@ -1043,6 +1047,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Thymeleaf/">
                         <span class="tag">Thymeleaf</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vue/">
+                        <span class="tag">Vue</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1212,6 +1223,19 @@
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T08:01:00.000Z">2020-04-22</time></div>
+                    <a href="/2020/04/22/vue-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Vue 学习笔记-1</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-10T02:40:00.000Z">2020-04-10</time></div>
                     <a href="/2020/04/10/springcloud-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring Cloud 学习笔记-1</a>
                     <p class="is-size-7 is-uppercase">
@@ -1260,19 +1284,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T06:06:00.000Z">2020-03-13</time></div>
-                    <a href="/2020/03/13/abstract/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java中的抽象类和接口以及匿名内部类</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1290,7 +1301,7 @@
                     <span class="level-item">四月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1327,7 +1338,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 16px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 18px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 18px;">nginx</a> <a href="/tags/plan/" style="font-size: 10px;">plan</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 14px;">智慧党建</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 14px;">编程规范</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 16px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 18px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 18px;">nginx</a> <a href="/tags/plan/" style="font-size: 10px;">plan</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 14px;">智慧党建</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 14px;">编程规范</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
     </div>
 </div>
         
@@ -1377,6 +1388,19 @@
             
             <div class="media-content">
                 <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T08:01:00.000Z">2020-04-22</time></div>
+                    <a href="/2020/04/22/vue-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Vue 学习笔记-1</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-10T02:40:00.000Z">2020-04-10</time></div>
                     <a href="/2020/04/10/springcloud-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring Cloud 学习笔记-1</a>
                     <p class="is-size-7 is-uppercase">
@@ -1425,19 +1449,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T06:06:00.000Z">2020-03-13</time></div>
-                    <a href="/2020/03/13/abstract/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java中的抽象类和接口以及匿名内部类</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1455,7 +1466,7 @@
                     <span class="level-item">四月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1492,7 +1503,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 16px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 18px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 18px;">nginx</a> <a href="/tags/plan/" style="font-size: 10px;">plan</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 14px;">智慧党建</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 14px;">编程规范</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 16px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 18px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 18px;">nginx</a> <a href="/tags/plan/" style="font-size: 10px;">plan</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 14px;">智慧党建</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 14px;">编程规范</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
     </div>
 </div>
     
