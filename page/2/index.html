@@ -133,324 +133,6 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-11T05:56:00.000Z">2020-03-11</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/">编程规范</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 分钟 读完 (大约 279 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/11/fk/">编程规范-禁止使用外键和级联</a>
-            
-        </h1>
-        <div class="content">
-            <p>最近看了阿里的Java开发手册有许多启发，合理的编码规范可以提升系统稳定性。</p>
-<p>在我曾经遇到的业务场景中，有两张表menu和menu_role。menu保存用户可访问的菜单，menu_role保存对应的用户可访问的菜单。对菜单执行删除操作的时候，如果menu_role中还有对应的用户关联就会提醒删除失败。在menu和menu_role中使用了外键约束RESTRICT，如果想要删除父表的记录时，而在子表中有关联该父表的记录，则不允许删除父表中的记录。</p>
-<p>看到阿里的规范中规定不得使用外键，外键概念必须在应用层解决。随着大数据时代的到来，单机低并发已经无法支持我们的应用系统，外键和级联不适合分布式和高并发集群，详细原因如下：</p>
-<center>
-
-<p> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200311135622.jpg" alt="截取自阿里巴巴Java开发手册"></p>
-</center>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-11T05:07:00.000Z">2020-03-11</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/">编程规范</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    几秒 读完 (大约 17 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/11/table/">编程规范-建表规约之表名和字段名</a>
-            
-        </h1>
-        <div class="content">
-            <center>
-
-<p> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200311131111.jpg" alt="截取自阿里巴巴Java开发手册"></p>
-</center>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-10T08:31:00.000Z">2020-03-10</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Java/">Java</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 837 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/10/jdk8/">jdk1.8中的一些新特性</a>
-            
-        </h1>
-        <div class="content">
-            <p><a href="https://gitee.com/SnailClimb/JavaGuide/blob/master/docs/java/What's%20New%20in%20JDK8/Java8Tutorial.md">参考：java8-tutorial</a></p>
-<ol>
-<li><p>接口中允许使用default关键字添加非抽象方法<br>如何使用接口中的默认非抽象方法？</p>
-<ul>
-<li>实现接口过后，直接使用默认的方法</li>
-<li>new一个接口对象，使用其中的默认方法(通过匿名内部类的方式访问的接口)</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">msg</span><span class="params">(String msg)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"欢迎使用本接口！"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Hello hello = <span class="keyword">new</span> Hello() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">msg</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> msg;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    System.out.println(hello.msg(<span class="string">"接口里面的方法！"</span>));</span><br><span class="line">    System.out.println(hello.hello());</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-        </div>
-        
-        
-        <div class="level is-mobile" style="display: flex;justify-content: center;">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/03/10/jdk8/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-06T15:31:00.000Z">2020-03-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/">编程规范</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    1 分钟 读完 (大约 114 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/06/boolean/">编程规范-Boolean类型</a>
-            
-        </h1>
-        <div class="content">
-            <p>当数据类型是Boolean类型的时候，get方法会成为isXxx的形式，POJO类的属性不要加is前缀，否则会被认为是get方法的前缀而出现异常</p>
-<p>在数据库表设计中，表达是与否的字段应该是is_xxx。POJO类中为xxx，重新设置resultMap的映射关系is_xxx到xxx</p>
-<center>
-
-<p> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200306233114.jpg" alt="截取自阿里巴巴Java开发手册"></p>
-</center>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-06T15:05:00.000Z">2020-03-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/%E6%9C%80%E8%BF%91%E8%AE%A1%E5%88%92/">最近计划</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    几秒 读完 (大约 26 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/06/plan/">最近计划</a>
-            
-        </h1>
-        <div class="content">
-            <ol>
-<li>Spring中的@Component和@Configuration(进行中)</li>
-<li>class, class.forName(), getClass()的区别</li>
-<li>数组和集合的区别</li>
-<li>Class类</li>
-</ol>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-06T09:31:00.000Z">2020-03-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 分钟 读完 (大约 692 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/06/annotation/">Spring中的@Documented、@Retention、@Target</a>
-            
-        </h1>
-        <div class="content">
-            <p>在阅读spring源码的过程当中，发现注解的上面都会出现@Documented、@Retention、@Target这3个注解，于是记录一下这3个注解到底是用来干嘛的。</p>
-<h4 id="1-Documented"><a href="#1-Documented" class="headerlink" title="1.@Documented"></a>1.@Documented</h4><p>源码：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Documented</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">@Target(ElementType.ANNOTATION_TYPE)</span><br><span class="line">public @interface Documented &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>@Documented是一个标记注解，没有成员，表明这个注解应该被javadoc工具记录，默认情况下javadoc之类的工具是不会记录注解的。如果声明注解时指定了@Documented,则它会被 javadoc之类的工具处理, 因此注解类型信息也会被包括在生成的文档中。</p>
-        </div>
-        
-        
-        <div class="level is-mobile" style="display: flex;justify-content: center;">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/03/06/annotation/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-06T09:31:00.000Z">2020-03-06</time>
                 
                 <div class="level-item">
@@ -626,7 +308,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-04T04:39:00.000Z">2020-03-04</time>
+                <time class="level-item has-text-grey" datetime="2020-03-02T09:40:00.000Z">2020-03-02</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
@@ -636,7 +318,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5 分钟 读完 (大约 708 个字)
+                    2 分钟 读完 (大约 273 个字)
                 </span>
                 
                 
@@ -645,20 +327,364 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/04/spb-3/">SpringBoot智慧党建项目(三)添加登录验证码</a>
+                <a class="has-link-black-ter" href="/2020/03/02/war/">SpringBoot打包成war的注意事项</a>
             
         </h1>
         <div class="content">
-            <h4 id="预期实现效果"><a href="#预期实现效果" class="headerlink" title="预期实现效果"></a>预期实现效果</h4> <center>
-
-<p>  <img src="/images/QQ%E6%88%AA%E5%9B%BE20200304144758.jpg" alt><br> </p></center><p></p>
+            <h4 id="1-将SpringBoot项目打包成war的注意事项"><a href="#1-将SpringBoot项目打包成war的注意事项" class="headerlink" title="1.将SpringBoot项目打包成war的注意事项"></a>1.将SpringBoot项目打包成war的注意事项</h4><ol>
+<li><p>修改pom.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;packaging&gt;war&lt;&#x2F;packaging&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>除去SpringBoot自带的tomcat</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;exclusions&gt;</span><br><span class="line">        &lt;exclusion&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-tomcat&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;&#x2F;exclusion&gt;</span><br><span class="line">    &lt;&#x2F;exclusions&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure></li></ol>
         </div>
         
         
         <div class="level is-mobile" style="display: flex;justify-content: center;">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2020/03/04/spb-3/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2020/03/02/war/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-01T04:17:00.000Z">2020-03-01</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 626 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/01/linux-new/">从零开始部署一个Java项目(基于centos7环境)</a>
+            
+        </h1>
+        <div class="content">
+            <h4 id="1-项目部署需要的准备工作"><a href="#1-项目部署需要的准备工作" class="headerlink" title="1.项目部署需要的准备工作"></a>1.项目部署需要的准备工作</h4><ol>
+<li>一台服务器(云服务器或物理服务器)</li>
+<li>安装jdk</li>
+<li>安装tomcat</li>
+<li>安装mysql</li>
+<li>安装nginx</li>
+</ol>
+        </div>
+        
+        
+        <div class="level is-mobile" style="display: flex;justify-content: center;">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/03/01/linux-new/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-28T12:38:00.000Z">2020-02-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 371 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/28/springboot-ControllerAdvice/">了解一下@ControllerAdvice注解</a>
+            
+        </h1>
+        <div class="content">
+            <p>@ControllerAdvice是一个增强的 Controller。使用这个 Controller ，可以实现三个方面的功能：</p>
+<ol>
+<li>全局异常处理</li>
+<li>全局数据绑定</li>
+<li>全局数据预处理</li>
+</ol>
+        </div>
+        
+        
+        <div class="level is-mobile" style="display: flex;justify-content: center;">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/02/28/springboot-ControllerAdvice/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-28T09:44:00.000Z">2020-02-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 193 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/28/springboot-resource/">SpringBoot中的静态资源访问</a>
+            
+        </h1>
+        <div class="content">
+            <h4 id="1-SSM中的配置"><a href="#1-SSM中的配置" class="headerlink" title="1.SSM中的配置"></a>1.SSM中的配置</h4><p>在SSM环境中，我们在springmv配置文件中配置不拦截静态资源有xml配置和java配置两种方法。</p>
+<ol>
+<li><p>xml配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;mvc:resources mapping&#x3D;&quot;&#x2F;**&quot; location&#x3D;&quot;&#x2F;&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>java配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@ComponentScan(basePackages &#x3D; &quot;com.zlgwzy.demo&quot;)</span><br><span class="line">public class WebConfig implements WebMvcConfigurer &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void addResourceHandlers(ResourceHandlerRegistry registry) &#123;</span><br><span class="line">        registry.addResourceHandler(&quot;&#x2F;**&quot;).addResourceLocations(&quot;&#x2F;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol>
+        </div>
+        
+        
+        <div class="level is-mobile" style="display: flex;justify-content: center;">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/02/28/springboot-resource/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-27T15:20:00.000Z">2020-02-27</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 181 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/27/springboot-config/">SpringBoot读取配置的几种方式以及优先级</a>
+            
+        </h1>
+        <div class="content">
+            <h4 id="1-通过-ConfigurationProperties读取、配置文件中的数据并与bean绑定-使用-Component注解可以像普通bean一样注入"><a href="#1-通过-ConfigurationProperties读取、配置文件中的数据并与bean绑定-使用-Component注解可以像普通bean一样注入" class="headerlink" title="1.通过@ConfigurationProperties读取、配置文件中的数据并与bean绑定,使用@Component注解可以像普通bean一样注入"></a>1.通过@ConfigurationProperties读取、配置文件中的数据并与bean绑定,使用@Component注解可以像普通bean一样注入</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@ConfigurationProperties(prefix &#x3D; &quot;pc&quot;)</span><br><span class="line">public class Computer &#123;</span><br><span class="line">    private String type;</span><br><span class="line">    private float price;</span><br><span class="line">    &#x2F;&#x2F;省略get&#x2F;set&#x2F;toString方法</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;application.properties添加如下配置</span><br><span class="line">pc.type&#x3D;notbook</span><br><span class="line">pc.price&#x3D;6500</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;controller</span><br><span class="line">@RestController</span><br><span class="line">public class ComputerController &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    Computer computer;</span><br><span class="line">    @GetMapping(&quot;&#x2F;computer&quot;)</span><br><span class="line">    public String computer()&#123;</span><br><span class="line">        return computer.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        <div class="level is-mobile" style="display: flex;justify-content: center;">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/02/27/springboot-config/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-27T14:36:00.000Z">2020-02-27</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 337 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/27/springboot-thymeleaf/">SpringBoot整合Thymeleaf</a>
+            
+        </h1>
+        <div class="content">
+            <h4 id="1-Thymeleaf介绍"><a href="#1-Thymeleaf介绍" class="headerlink" title="1.Thymeleaf介绍"></a>1.Thymeleaf介绍</h4><p>Thymeleaf是新一代Java模板引擎，支持HTML原型，为Spring官方推荐的模板引擎。</p>
+<h4 id="2-使用Thymeleaf需要添加Thymeleaf依赖"><a href="#2-使用Thymeleaf需要添加Thymeleaf依赖" class="headerlink" title="2.使用Thymeleaf需要添加Thymeleaf依赖"></a>2.使用Thymeleaf需要添加Thymeleaf依赖</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">&lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        <div class="level is-mobile" style="display: flex;justify-content: center;">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/02/27/springboot-thymeleaf/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-27T13:02:00.000Z">2020-02-27</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/SpringBoot/">SpringBoot</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 782 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/27/springboot-interceptor/">SpringBoot实现拦截器</a>
+            
+        </h1>
+        <div class="content">
+            <h4 id="1-什么是拦截器？"><a href="#1-什么是拦截器？" class="headerlink" title="1.什么是拦截器？"></a>1.什么是拦截器？</h4><p>拦截器(Interceptor)同过滤器(Filter)一样，都是面向切面编程——AOP思想的具体实现。</p>
+<p>拦截器可以在Controller处理请求之前编写日志，添加或更新配置。</p>
+<p>在 Spring中，当请求发送到Controller时，在被Controller处理之前，它必须经过Interceptors（0或更多）。</p>
+<h4 id="2-拦截器和过滤器的区别"><a href="#2-拦截器和过滤器的区别" class="headerlink" title="2.拦截器和过滤器的区别"></a>2.拦截器和过滤器的区别</h4><center>
+
+<p> <img src="/images/QQ%E6%88%AA%E5%9B%BE20200227210716.jpg" alt="拦截器和过滤器的区别"></p>
+</center>
+        </div>
+        
+        
+        <div class="level is-mobile" style="display: flex;justify-content: center;">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/02/27/springboot-interceptor/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -692,9 +718,9 @@
             
             <li><a class="pagination-link has-text-black-ter" href="/page/3/">3</a></li>
             
-            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/4/">4</a></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/6/">6</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/5/">5</a></li>
             
         </ul>
     </nav>
@@ -744,7 +770,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            51
+                            42
                         </p>
                     </a>
                 </div>
@@ -756,7 +782,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            14
+                            10
                         </p>
                     </a>
                 </div>
@@ -768,7 +794,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            37
+                            33
                         </p>
                     </a>
                 </div>
@@ -829,14 +855,6 @@
                 <span class="level-item tag">7</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/JavaScript/">
-            <span class="level-start">
-                <span class="level-item">JavaScript</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">2</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/Linux/">
             <span class="level-start">
                 <span class="level-item">Linux</span>
@@ -866,7 +884,7 @@
                 <span class="level-item">SpringBoot</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/SpringCloud/">
@@ -885,28 +903,12 @@
                 <span class="level-item tag">7</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/Vue/">
-            <span class="level-start">
-                <span class="level-item">Vue</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">
             <span class="level-start">
                 <span class="level-item">文章推荐</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/%E6%9C%80%E8%BF%91%E8%AE%A1%E5%88%92/">
-            <span class="level-start">
-                <span class="level-item">最近计划</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E7%94%9F%E6%B4%BB/">
@@ -915,14 +917,6 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/">
-            <span class="level-start">
-                <span class="level-item">编程规范</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/%E9%9D%A2%E8%AF%95/">
@@ -1003,13 +997,6 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/JavaScript/">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/Linux/">
                         <span class="tag">Linux</span>
                         <span class="tag is-grey">1</span>
@@ -1026,7 +1013,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/SpringBoot/">
                         <span class="tag">SpringBoot</span>
-                        <span class="tag is-grey">11</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 
@@ -1047,13 +1034,6 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Thymeleaf/">
                         <span class="tag">Thymeleaf</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Vue/">
-                        <span class="tag">Vue</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1108,13 +1088,6 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/plan/">
-                        <span class="tag">plan</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/war/">
                         <span class="tag">war</span>
                         <span class="tag is-grey">1</span>
@@ -1150,23 +1123,16 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/">
-                        <span class="tag">日常计划</span>
+                    <a class="tags has-addons" href="/tags/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">
+                        <span class="tag">文章推荐</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/">
-                        <span class="tag">智慧党建</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/">
-                        <span class="tag">编程规范</span>
-                        <span class="tag is-grey">3</span>
+                    <a class="tags has-addons" href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/">
+                        <span class="tag">日常计划</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1223,10 +1189,10 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T08:01:00.000Z">2020-04-22</time></div>
-                    <a href="/2020/04/22/vue-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Vue 学习笔记-1</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-28T12:15:00.000Z">2020-05-28</time></div>
+                    <a href="/2020/05/28/cglib/" class="title has-link-black-ter is-size-6 has-text-weight-normal">文章推荐-CGLIB(Code Generation Library)详解</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                        <a class="has-link-grey -link" href="/categories/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">文章推荐</a>
                     </p>
                 </div>
             </div>
@@ -1249,23 +1215,10 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-02T08:28:00.000Z">2020-04-02</time></div>
-                    <a href="/2020/04/02/es6-2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">阮一峰ECMAScript 6 入门学习(2)</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T06:06:00.000Z">2020-03-13</time></div>
+                    <a href="/2020/03/13/enum/" class="title has-link-black-ter is-size-6 has-text-weight-normal">文章推荐-Java枚举类学习到进阶</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/JavaScript/">JavaScript</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-02T01:53:00.000Z">2020-04-02</time></div>
-                    <a href="/2020/04/02/es6-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">阮一峰ECMAScript 6 入门学习(1)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/JavaScript/">JavaScript</a>
+                        <a class="has-link-grey -link" href="/categories/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">文章推荐</a>
                     </p>
                 </div>
             </div>
@@ -1276,9 +1229,22 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T06:06:00.000Z">2020-03-13</time></div>
-                    <a href="/2020/03/13/enum/" class="title has-link-black-ter is-size-6 has-text-weight-normal">文章推荐-Java枚举类学习到进阶</a>
+                    <a href="/2020/03/13/abstract/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java中的抽象类和接口以及匿名内部类</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">文章推荐</a>
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-12T09:25:00.000Z">2020-03-12</time></div>
+                    <a href="/2020/03/12/observer/" class="title has-link-black-ter is-size-6 has-text-weight-normal">观察者模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -1296,12 +1262,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/04/">
                 <span class="level-start">
                     <span class="level-item">四月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1312,7 +1289,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">20</span>
+                    <span class="level-item tag">13</span>
                 </span>
             </a>
         </li>
@@ -1338,7 +1315,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 16px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 18px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 18px;">nginx</a> <a href="/tags/plan/" style="font-size: 10px;">plan</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 14px;">智慧党建</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 14px;">编程规范</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12.5px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 17.5px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12.5px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12.5px;">文件上传</a> <a href="/tags/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/" style="font-size: 10px;">文章推荐</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12.5px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
     </div>
 </div>
         
@@ -1388,10 +1365,10 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T08:01:00.000Z">2020-04-22</time></div>
-                    <a href="/2020/04/22/vue-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Vue 学习笔记-1</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-28T12:15:00.000Z">2020-05-28</time></div>
+                    <a href="/2020/05/28/cglib/" class="title has-link-black-ter is-size-6 has-text-weight-normal">文章推荐-CGLIB(Code Generation Library)详解</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Vue/">Vue</a>
+                        <a class="has-link-grey -link" href="/categories/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">文章推荐</a>
                     </p>
                 </div>
             </div>
@@ -1414,23 +1391,10 @@
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-02T08:28:00.000Z">2020-04-02</time></div>
-                    <a href="/2020/04/02/es6-2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">阮一峰ECMAScript 6 入门学习(2)</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T06:06:00.000Z">2020-03-13</time></div>
+                    <a href="/2020/03/13/enum/" class="title has-link-black-ter is-size-6 has-text-weight-normal">文章推荐-Java枚举类学习到进阶</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/JavaScript/">JavaScript</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-02T01:53:00.000Z">2020-04-02</time></div>
-                    <a href="/2020/04/02/es6-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">阮一峰ECMAScript 6 入门学习(1)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/JavaScript/">JavaScript</a>
+                        <a class="has-link-grey -link" href="/categories/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">文章推荐</a>
                     </p>
                 </div>
             </div>
@@ -1441,9 +1405,22 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T06:06:00.000Z">2020-03-13</time></div>
-                    <a href="/2020/03/13/enum/" class="title has-link-black-ter is-size-6 has-text-weight-normal">文章推荐-Java枚举类学习到进阶</a>
+                    <a href="/2020/03/13/abstract/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java中的抽象类和接口以及匿名内部类</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">文章推荐</a>
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-12T09:25:00.000Z">2020-03-12</time></div>
+                    <a href="/2020/03/12/observer/" class="title has-link-black-ter is-size-6 has-text-weight-normal">观察者模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -1461,12 +1438,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/04/">
                 <span class="level-start">
                     <span class="level-item">四月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1477,7 +1465,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">20</span>
+                    <span class="level-item tag">13</span>
                 </span>
             </a>
         </li>
@@ -1503,7 +1491,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 16px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 18px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 18px;">java</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 18px;">nginx</a> <a href="/tags/plan/" style="font-size: 10px;">plan</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12px;">文件上传</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E6%99%BA%E6%85%A7%E5%85%9A%E5%BB%BA/" style="font-size: 14px;">智慧党建</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 14px;">编程规范</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
+        <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/Centos/" style="font-size: 10px;">Centos</a> <a href="/tags/FTP/" style="font-size: 10px;">FTP</a> <a href="/tags/FastDFS/" style="font-size: 10px;">FastDFS</a> <a href="/tags/Filter/" style="font-size: 10px;">Filter</a> <a href="/tags/Hello-World/" style="font-size: 10px;">Hello World</a> <a href="/tags/IOC/" style="font-size: 12.5px;">IOC</a> <a href="/tags/Interceptor/" style="font-size: 10px;">Interceptor</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 20px;">SpringBoot</a> <a href="/tags/SpringCloud/" style="font-size: 10px;">SpringCloud</a> <a href="/tags/SpringMVC/" style="font-size: 17.5px;">SpringMVC</a> <a href="/tags/Thymeleaf/" style="font-size: 10px;">Thymeleaf</a> <a href="/tags/equals/" style="font-size: 10px;">equals</a> <a href="/tags/hashcode/" style="font-size: 10px;">hashcode</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 17.5px;">java</a> <a href="/tags/jdk8/" style="font-size: 10px;">jdk8</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/war/" style="font-size: 10px;">war</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">主从模式</a> <a href="/tags/%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" style="font-size: 10px;">动静分离</a> <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" style="font-size: 12.5px;">反向代理</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 12.5px;">文件上传</a> <a href="/tags/%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/" style="font-size: 10px;">文章推荐</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E8%AE%A1%E5%88%92/" style="font-size: 10px;">日常计划</a> <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" style="font-size: 12.5px;">负载均衡</a> <a href="/tags/%E9%9B%86%E7%BE%A4/" style="font-size: 10px;">集群</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 10px;">面试</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a> <a href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">高可用模式</a>
     </div>
 </div>
     
